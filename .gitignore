@@ -1,0 +1,75 @@
+# Ignore temporary files
+*~
+*.swp
+*.dSYM
+*~$
+
+
+# Ignore auxilliary, auto-generated *TeX files
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.lof
+*.log
+*.lot
+*.fls
+#*.out   -- some of STIM's output files use this suffix
+*.toc
+*.synctex.gz
+## Intermediate documents
+*.dvi
+bliography auxiliary files (bibtex/biblatex/biber):
+*.bbl
+*.bcf
+*.blg
+*-blx.aux
+*-blx.bib
+*.brf
+*.run.xml
+## Build tool auxiliary files:
+*.fdb_latexmk
+*.synctex
+*.synctex(busy)
+*.synctex.gz
+*.synctex.gz(busy)
+*.pdfsync
+### Auxiliary and intermediate files from other packages:
+## algorithms
+*.alg
+*.loa
+# achemso
+acs-*.bib
+# amsthm
+*.thm
+# beamer
+*.nav
+*.snm
+*.vrb
+## glossaries
+*.acn
+*.acr
+*.glg
+*.glo
+*.gls
+## gnuplottex
+*-gnuplottex-*
+## hyperref
+*.brf
+## listings
+*.lol
+## makeidx
+*.idx
+*.ilg
+*.ind
+*.ist
+## xindy
+*.xdy
+## misc
+*.tdo
+
+
+# Ignore these files
+.dummy
+
+# Ignore all macOS diretory display settings files
+**/.DS_Store
+
