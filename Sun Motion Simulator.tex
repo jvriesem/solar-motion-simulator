@@ -127,6 +127,10 @@
 
 
 % Page Positioning
+\newcommand*{\QRXShift}{6cm}
+\newcommand*{\QRYShift}{8cm}
+\newcommand*{\QRRotation}{0}
+
 \newcommand*{\RegMarkUpperLeftXShift}{-11.5cm}
 \newcommand*{\RegMarkUpperLeftYShift}{10.5cm}
 \newcommand*{\RegMarkLowerRightXShift}{8cm}
@@ -166,7 +170,7 @@
 %\newcommand*{\TimeDiskRotation}{0}
 
 \newcommand*{\SunCarriageXShift}{+6cm}
-\newcommand*{\SunCarriageYShift}{4.625cm}
+\newcommand*{\SunCarriageYShift}{2.625cm}
 \newcommand*{\SunCarriageRotation}{0}
 
 %\newcommand*{\SunCarriageXShift}{-9cm}
@@ -335,6 +339,16 @@
 
 \begin{tikzpicture}
 
+
+%% ------------------------------------------------------------------------- %
+%% Draw the QR CODE
+%% ------------------------------------------------------------------------- %
+%
+%\begin{scope}[xshift=\QRXShift,yshift=\QRYShift,rotate=\QRRotation]
+%
+%	\node at (0,0) {\includegraphics[width=2.5cm]{qr_to_website.png}};
+%
+%\end{scope}
 
 % ------------------------------------------------------------------------- %
 % Draw the HELPER CARD
@@ -914,7 +928,7 @@
 	
 	% Copyright label
 	\draw[decoration={text along path,
-	      text={|\footnotesize| Copyright 2021 by Jess W. Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
+	      text={|\footnotesize| Copyright 2022 by Jess W. Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
 	
 	% Solar Frame Label
 	\node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -1128,6 +1142,20 @@
 
 \newpage
 \begin{tikzpicture}
+
+
+
+%% ------------------------------------------------------------------------- %
+%% Draw the QR CODE -- no flipping coordinates. 
+%% ------------------------------------------------------------------------- %
+%
+%\begin{scope}[xshift=-\QRXShift,yshift=\QRYShift,rotate=\QRRotation]
+%
+%	\node at (0,0) {\includegraphics[width=2.5cm]{qr_to_website.png}};
+%
+%\end{scope}
+
+
 \begin{scope}[xscale=-1]
 
 \begin{scope}[xshift=\HelpCardXShift,yshift=\HelpCardYShift,rotate=\HelpCardRotation]
@@ -1142,7 +1170,7 @@
  % fake URL that does not render as any text, but eats up a bug that causes the URL AFTER the Twitter URL to also point to Twitter. 
 \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}.} \\
 		\bigskip
-		\textbf{\copyright 2021 by Jess W. Vriesema \\of the University of Wisconsin--Eau Claire} \\
+		\textbf{\copyright 2022 by Jess W. Vriesema \\of the University of Wisconsin--Eau Claire} \\
 		\bigskip
 		Feel free to contact me with questions, comments or suggestions.\\
 		Email: \href{mailto:vriesejw@uwec.edu}{vriesejw@uwec.edu} \\
@@ -1210,6 +1238,10 @@
 %	-- (0,-\SolarFrameCenterSupportFlapLength)
 %	-- (0,-\HorizonDiskRadius);
 \node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=90] at (\SolarFrameCenterSupportFlapWidth/2,\SolarFrameCenterSupportFlapLength/2) {Attach here};
+
+\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=0] at (-1.3*\SolarFrameCenterSupportFlapWidth,0) {\includegraphics[width=2.5cm]{qr_code_simple.png}};
+\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=90] at (-\SolarFrameCenterSupportFlapWidth/3,0) {\bfseries{Scan for more info:}};
+
 %}
 
 % Laser cut mode
@@ -1481,7 +1513,7 @@
 
 % Copyright label
 \draw[decoration={text along path,
-      text={|\footnotesize| Copyright 2021 by Jess~W.~Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
+      text={|\footnotesize| Copyright 2022 by Jess~W.~Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
 
 % Solar Frame Label
 \node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -1777,7 +1809,7 @@
 	You can simulate the position of the Sun in the sky by pivoting the Solar Arm from 0 (midnight) to 6 (6~AM) to 12 (noon) to 18 (6~PM) to 24 (midnight). The Sun slider represents the Sun. Sunrise happens when the Sun slider crosses from behind the horizon disk (usually in the eastern sky) in the morning. Sunset happens when the Sun slider crosses from above the horizon disk to below it (usually in the western sky) in the evening. Some people find it helpful to rotate the entire model such that the printed Horizon Disk faces up.
 \vfill
 \hrule 
-\noindent\copyright 2021 by \href{https://www.lpl.arizona.edu/~vriesema/}{Jess W. Vriesema} of the University of Wisconsin--Eau Claire. All rights reserved. 
+\noindent\copyright 2022 by \href{https://www.lpl.arizona.edu/~vriesema/}{Jess W. Vriesema} of the University of Wisconsin--Eau Claire. All rights reserved. 
 	\end{multicols}
 \fi % \ifPrintInstructions
 
@@ -1805,6 +1837,7 @@
 		\item Figure out a way to easily adjust the friction between Solar Carriage and Solar Arm. 
 		\item Revise the instruction card and instructions to use less jingo. 
 		\item Clarify the license terms somewhere?
+		\item Move the ``S'' off-axis somewhat, since it gets sliced in two otherwise?
 		\item Draw cardinal points on the back of the horizon disk? 
 		\item The angles in the Solar Frame need some adjustment. Note the pgfsetmacro commands to account for the outline width thickness and such. The stuff in the asin() functions is only approximate right now. That needs to be done for the laser cut things, too. 
 		\item Make the horizon disk's support flap have a shape that has a unique orientation. 
