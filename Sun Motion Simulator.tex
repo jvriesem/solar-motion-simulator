@@ -297,14 +297,22 @@
 \newcommand*{\SolarFrameCenterSupportFlapLength}{2.5cm} % both right and left of (0,0)
 \newcommand*{\SolarFrameCenterSupportFlapWidth}{1.25cm}
 \newcommand*{\SolarFrameCenterLatitudeArcRadius}{3cm}
+
 \newcommand*{\SolarFrameDeclinationMajorLineWidth}{0.05cm}
 \newcommand*{\SolarFrameDeclinationMajorLineLength}{0.3cm}
-\newcommand*{\SolarFrameDeclinationMajorLineLabelOffset}{0.5cm}
+\newcommand*{\SolarFrameDeclinationMajorLineLabelOffset}{0.4cm}
 \newcommand*{\SolarFrameDeclinationMajorLineLabelScale}{1.0}
+
+\newcommand*{\SolarFrameDeclinationMedLineWidth}{0.02cm}
+\newcommand*{\SolarFrameDeclinationMedLineLength}{0.2cm}
+\newcommand*{\SolarFrameDeclinationMedLineLabelOffset}{0.3cm}
+\newcommand*{\SolarFrameDeclinationMedLineLabelScale}{1.0}
+
 \newcommand*{\SolarFrameDeclinationMinorLineWidth}{0.02cm}
-\newcommand*{\SolarFrameDeclinationMinorLineLength}{0.2cm}
+\newcommand*{\SolarFrameDeclinationMinorLineLength}{0.13cm}
 \newcommand*{\SolarFrameDeclinationMinorLineLabelOffset}{0.3cm}
 \newcommand*{\SolarFrameDeclinationMinorLineLabelScale}{1.0}
+
 \newcommand*{\SolarFrameDeclinationLabelRadius}{\SolarFrameOuterRadius-0.45cm}
 \newcommand*{\SolarFrameLatitudeLineWidth}{0.05cm}
 \newcommand*{\SolarFrameLatitudeLineLength}{0.3cm}
@@ -955,18 +963,35 @@
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth] (0,0) -- (\SolarFrameCenterSupportFlapLength,0);
 	
 	% Markings for Solar Declination
-	% Major declination markers
-	\foreach \x in {-\axialTilt,0,+\axialTilt}
+	% Minor declination markers (unlabelled)
+	\pgfmathsetmacro{\floorAxialTilt}{int(floor(\axialTilt))}
+	\foreach \x in {-\floorAxialTilt,...,+\floorAxialTilt} 
 	{
-		\draw[line width=\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
-		\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
+		% Is it a major declination marker?
+		\pgfmathparse{mod(\x,10)}
+		\ifnum0=\pgfmathresult\relax
+			% major -- big, thick and labelled
+			\draw[line width=\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
+			\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
+		\else
+			\pgfmathparse{mod(\x,5)}
+			\ifnum0=\pgfmathresult\relax
+				% Medium: thicker, bigger lines, but no label
+				\draw[line width=\SolarFrameDeclinationMedLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMedLineLength+\SolarFrameInnerRadius);
+				%\node[scale=\SolarFrameDeclinationMedLineLabelScale,font=\normalsize,rotate=\x] at (\x:\SolarFrameDeclinationMedLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMedLineLabelOffset) {};
+			\else
+				% minor -- thin, short lines, no label
+				\draw[line width=\SolarFrameDeclinationMinorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius);
+			\fi
+		\fi
 	}
-	% Minor declination markers
-	\foreach \x in {-20,-10,10,20} 
+	% Axial Tilt markers (labelled)
+	\foreach \x in {-\axialTilt,\axialTilt}
 	{
-		\draw[line width=\SolarFrameDeclinationMinorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius);
-		\node[scale=\SolarFrameDeclinationMinorLineLabelScale,font=\normalsize,rotate=\x] at (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMinorLineLabelOffset) {\x$^\circ$};
+		\draw[line width=1.2*\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:1.2*\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
+		\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+1.3*\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
 	}
+
 	% Solar declination label
 	\draw[decoration={text along path,
 	      text={|\large|Solar Declination},text align={center},text color=black,raise=0.0cm},decorate] (90:\SolarFrameDeclinationLabelRadius) arc[start angle=90,end angle=-90,radius=\SolarFrameDeclinationLabelRadius];
@@ -1583,19 +1608,53 @@
 % Attach here label
 \node[scale=\HorizonDiskTapeMeScale,font=\normalsize] at (\SolarFrameCenterSupportFlapLength/2,\SolarFrameCenterSupportFlapWidth/2) {Attach here};
 
+%% Markings for Solar Declination
+%% Major declination markers
+%\foreach \x in {-\axialTilt,0,+\axialTilt}
+%{
+%	\draw[line width=\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
+%	\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=-\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
+%}
+%% Minor declination markers
+%\foreach \x in {-20,-10,10,20} 
+%{
+%	\draw[line width=\SolarFrameDeclinationMinorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius);
+%	\node[scale=\SolarFrameDeclinationMinorLineLabelScale,font=\normalsize,rotate=-\x] at (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMinorLineLabelOffset) {\x$^\circ$};
+%}
+
+	%%%%%%%%%%%%%%%%%
 % Markings for Solar Declination
-% Major declination markers
-\foreach \x in {-\axialTilt,0,+\axialTilt}
-{
-	\draw[line width=\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
-	\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=-\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
-}
-% Minor declination markers
-\foreach \x in {-20,-10,10,20} 
-{
-	\draw[line width=\SolarFrameDeclinationMinorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius);
-	\node[scale=\SolarFrameDeclinationMinorLineLabelScale,font=\normalsize,rotate=-\x] at (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMinorLineLabelOffset) {\x$^\circ$};
-}
+	% Minor declination markers (unlabelled)
+	\pgfmathsetmacro{\floorAxialTilt}{int(floor(\axialTilt))}
+	\foreach \x in {-\floorAxialTilt,...,+\floorAxialTilt} 
+	{
+		% Is it a major declination marker?
+		\pgfmathparse{mod(\x,10)}
+		\ifnum0=\pgfmathresult\relax
+			% major -- big, thick and labelled
+			\draw[line width=\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
+			\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=-\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
+		\else
+			\pgfmathparse{mod(\x,5)}
+			\ifnum0=\pgfmathresult\relax
+				% Medium: thicker, bigger lines, but no label
+				\draw[line width=\SolarFrameDeclinationMedLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMedLineLength+\SolarFrameInnerRadius);
+				%\node[scale=\SolarFrameDeclinationMedLineLabelScale,font=\normalsize,rotate=\x] at (\x:\SolarFrameDeclinationMedLineLength+\SolarFrameInnerRadius+\SolarFrameDeclinationMedLineLabelOffset) {};
+			\else
+				% minor -- thin, short lines, no label
+				\draw[line width=\SolarFrameDeclinationMinorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius);
+			\fi
+		\fi
+	}
+	% Axial Tilt markers (labelled)
+	\foreach \x in {-\axialTilt,\axialTilt}
+	{
+		\draw[line width=1.2*\SolarFrameDeclinationMajorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:1.2*\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius);
+		\node[scale=\SolarFrameDeclinationMajorLineLabelScale,font=\normalsize,rotate=-\x] at (\x:\SolarFrameDeclinationMajorLineLength+\SolarFrameInnerRadius+1.3*\SolarFrameDeclinationMajorLineLabelOffset) {\x$^\circ$};
+	}
+	%%%%%%%%%%%%%%%%%
+
+
 % Solar declination label
 \draw[decoration={text along path,
       text={|\large|Solar Declination},text align={center},text color=black,raise=0.0cm},decorate] (-90:\SolarFrameDeclinationLabelRadius) arc[start angle=-90,end angle=90,radius=\SolarFrameDeclinationLabelRadius];
