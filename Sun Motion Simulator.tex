@@ -323,13 +323,13 @@
 
 \newcommand*{\SolarFrameDeclinationLabelRadius}{\SolarFrameOuterRadius-0.45cm}
 
-\newcommand*{\SolarFrameLatitudeMajorLineWidth}{0.05cm}
+\newcommand*{\SolarFrameLatitudeMajorLineWidth}{0.03cm}
 \newcommand*{\SolarFrameLatitudeMajorLineLength}{0.3cm}
 \newcommand*{\SolarFrameLatitudeMajorLineLabelOffset}{0.45cm}
 \newcommand*{\SolarFrameLatitudeMajorLineLabelScale}{0.9}
 
-\newcommand*{\SolarFrameLatitudeMinorLineWidth}{0.02cm}
-\newcommand*{\SolarFrameLatitudeMinorLineLength}{0.15cm}
+\newcommand*{\SolarFrameLatitudeMinorLineWidth}{0.015cm}
+\newcommand*{\SolarFrameLatitudeMinorLineLength}{0.2cm}
 
 \newcommand*{\SolarFrameLatitudeLabelRadius}{\SolarFrameCenterLatitudeArcRadius+0.55cm}
 \newcommand*{\SolarFrameTimeDiskIncisionWidth}{\IncisionWidth}
@@ -1105,7 +1105,7 @@
 	
 	
 	% Minor latitude markers (unlabelled)
-	\foreach \x in {-85,...,5,...,+85} 
+	\foreach \x in {-89,...,1,...,+89} 
 	{
 		% Is it a major declination marker?
 		\pgfmathparse{mod(\x,10)}
@@ -1133,6 +1133,9 @@
 			\ifnum0=\pgfmathresult\relax
 				% minor -- unlabelled
 				\draw[line width=\SolarFrameLatitudeMinorLineWidth] (-90+\x:\SolarFrameCenterLatitudeArcRadius) --  (-90+\x:\SolarFrameCenterLatitudeArcRadius-\SolarFrameLatitudeMinorLineLength);
+			\else
+				% Super minor -- unlabelled
+				\draw[line width=\SolarFrameLatitudeMinorLineWidth] (-90+\x:\SolarFrameCenterLatitudeArcRadius) --  (-90+\x:\SolarFrameCenterLatitudeArcRadius-0.6*\SolarFrameLatitudeMinorLineLength);
 			\fi
 		\fi
 	}
@@ -1804,7 +1807,7 @@
 
 
 	% Minor latitude markers (unlabelled)
-	\foreach \x in {-85,...,5,...,+85} 
+	\foreach \x in {-89,...,1,...,+89} 
 	{
 		% Is it a major declination marker?
 		\pgfmathparse{mod(\x,10)}
@@ -1832,6 +1835,9 @@
 			\ifnum0=\pgfmathresult\relax
 				% minor -- unlabelled
 				\draw[line width=\SolarFrameLatitudeMinorLineWidth] (-90+\x:\SolarFrameCenterLatitudeArcRadius) --  (-90+\x:\SolarFrameCenterLatitudeArcRadius-\SolarFrameLatitudeMinorLineLength);
+			\else
+				% Super minor -- unlabelled
+				\draw[line width=\SolarFrameLatitudeMinorLineWidth] (-90+\x:\SolarFrameCenterLatitudeArcRadius) --  (-90+\x:\SolarFrameCenterLatitudeArcRadius-0.6*\SolarFrameLatitudeMinorLineLength);
 			\fi
 		\fi
 	}
