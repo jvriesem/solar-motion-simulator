@@ -251,18 +251,30 @@
 \newcommand*{\TimeDiskIncisionExtraSize}{0.0cm}
 %\newcommand*{\TimeDiskIncisionSize}{\TimeDiskRadius+\TimeDiskIncisionExtraSize}
 \newcommand*{\TimeDiskIncisionWidth}{\IncisionWidth}
+
 \newcommand*{\TimeDiskSixHourTickSize}{0.5cm}
 \newcommand*{\TimeDiskSixHourTickWidth}{0.05cm}
-\newcommand*{\TimeDiskSixHourLabelOffset}{0.25cm}
+\newcommand*{\TimeDiskSixHourLabelOffset}{0.15cm}
 \newcommand*{\TimeDiskSixHourLabelScale}{1.0}
-\newcommand*{\TimeDiskThreeHourTickSize}{0.3cm}
-\newcommand*{\TimeDiskThreeHourTickWidth}{0.035cm}
-\newcommand*{\TimeDiskThreeHourLabelOffset}{0.25cm}
-\newcommand*{\TimeDiskThreeHourLabelScale}{0.95}
-\newcommand*{\TimeDiskOneHourTickSize}{0.2cm}
-\newcommand*{\TimeDiskOneHourTickWidth}{0.01cm}
-\newcommand*{\TimeDiskOneHourLabelOffset}{0.2cm}
+
+%\newcommand*{\TimeDiskThreeHourTickSize}{0.3cm}
+%\newcommand*{\TimeDiskThreeHourTickWidth}{0.035cm}
+%\newcommand*{\TimeDiskThreeHourLabelOffset}{0.25cm}
+%\newcommand*{\TimeDiskThreeHourLabelScale}{0.95}
+
+\newcommand*{\TimeDiskOneHourTickSize}{0.3cm}
+\newcommand*{\TimeDiskOneHourTickWidth}{0.03cm}
+\newcommand*{\TimeDiskOneHourLabelOffset}{0.1cm}
 \newcommand*{\TimeDiskOneHourLabelScale}{0.75}
+
+\newcommand*{\TimeDiskHalfHourTickSize}{0.2cm}
+\newcommand*{\TimeDiskHalfHourTickWidth}{0.01cm}
+%\newcommand*{\TimeDiskHalfHourLabelOffset}{0.2cm}
+%\newcommand*{\TimeDiskHalfHourLabelScale}{0.75}
+
+\newcommand*{\TimeDiskQuarterHourTickSize}{0.1cm}
+\newcommand*{\TimeDiskQuarterHourTickWidth}{0.01cm}
+
 \newcommand*{\TimeDiskLabelScale}{1.5}
 \newcommand*{\TimeDiskLabelRadius}{0.30*\TimeDiskRadius}
 
@@ -607,29 +619,72 @@
 	%\shade[shading=radial, inner color=white, outer color=gray!20] circle[radius=\TimeDiskRadius];
 	\draw[color=\OutlineColor, line width=\OutlineWidth] (0,0) circle[radius=\TimeDiskRadius];
 	\fill[color=black!100] (0,0) circle[radius=0.1cm];
-	% Minor ticks every 1 hour
-	%\foreach \x in {0,15,...,345}
-	%	\draw (\x:\TimeDiskRadius-\TimeDiskOneHourTickSize) -- (\x:\TimeDiskRadius);
-	\foreach \theta / \hour in {15/1, 30/2, 60/4, 75/5, 105/7, 120/8, 150/10, 165/11, 195/13, 210/14, 240/16, 255/17, 285/19, 300/20, 330/22, 345/23} {
-		\draw[line width=\TimeDiskOneHourTickWidth] (90-\theta:\TimeDiskRadius-\TimeDiskOneHourTickSize) -- (90-\theta:\TimeDiskRadius);
-		\node[scale=\TimeDiskOneHourLabelScale,font=\normalsize] at (90-\theta:\TimeDiskRadius-\TimeDiskOneHourTickSize-2*\TimeDiskOneHourLabelOffset) {\hour};
-	}
-	%\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-15:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {1};
-	% Intermediate ticks every 3 hours
-	\foreach \x in {0,45,...,315}
-		\draw[line width=\TimeDiskThreeHourTickWidth] (\x:\TimeDiskRadius-\TimeDiskThreeHourTickSize) -- (\x:\TimeDiskRadius);
-	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-45:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {3};
-	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-135:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {9};
-	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-225:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {15};
-	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-315:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {21};
+%	% Minor ticks every 1 hour
+%	%\foreach \x in {0,15,...,345}
+%	%	\draw (\x:\TimeDiskRadius-\TimeDiskOneHourTickSize) -- (\x:\TimeDiskRadius);
+%	\foreach \theta / \hour in {15/1, 30/2, 60/4, 75/5, 105/7, 120/8, 150/10, 165/11, 195/13, 210/14, 240/16, 255/17, 285/19, 300/20, 330/22, 345/23} {
+%		\draw[line width=\TimeDiskOneHourTickWidth] (90-\theta:\TimeDiskRadius-\TimeDiskOneHourTickSize) -- (90-\theta:\TimeDiskRadius);
+%		\node[scale=\TimeDiskOneHourLabelScale,font=\normalsize] at (90-\theta:\TimeDiskRadius-\TimeDiskOneHourTickSize-2*\TimeDiskOneHourLabelOffset) {\hour};
+%	}
+%	%\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-15:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {1};
+%	% Intermediate ticks every 3 hours
+%	\foreach \x in {0,45,...,315}
+%		\draw[line width=\TimeDiskThreeHourTickWidth] (\x:\TimeDiskRadius-\TimeDiskThreeHourTickSize) -- (\x:\TimeDiskRadius);
+%	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-45:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {3};
+%	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-135:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {9};
+%	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-225:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {15};
+%	\node[scale=\TimeDiskThreeHourLabelScale,font=\normalsize] at (90-315:\TimeDiskRadius-\TimeDiskThreeHourTickSize-2*\TimeDiskThreeHourLabelOffset) {21};
+%	
+%	% Cardinal ticks with labels every 90 degrees
+%	\foreach \x in {90,180,270}
+%		\draw[line width=\TimeDiskSixHourTickWidth] (90-\x:\TimeDiskRadius-\TimeDiskSixHourTickSize) -- (90-\x:\TimeDiskRadius);
+%	%\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (90:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {24};
+%	\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (0:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {6};
+%	\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (-90:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {12};
+%	\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (180:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {18};
 	
-	% Cardinal ticks with labels every 90 degrees
-	\foreach \x in {90,180,270}
-		\draw[line width=\TimeDiskSixHourTickWidth] (90-\x:\TimeDiskRadius-\TimeDiskSixHourTickSize) -- (90-\x:\TimeDiskRadius);
-	%\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (90:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {24};
-	\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (0:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {6};
-	\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (-90:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {12};
-	\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (180:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {18};
+	
+	%%%%%%%%%%
+	\foreach \x in {1,...,359} 
+	{
+		% Is it a cardinal point (0,3,6,9)?
+		\pgfmathparse{mod(\x,90)}
+		\ifnum0=\pgfmathresult\relax
+			% major -- big, thick and labelled
+			\pgfmathsetmacro{\hour}{int(\x/15)}
+			\draw[line width=\TimeDiskSixHourTickWidth] (90-\x:\TimeDiskRadius-\TimeDiskSixHourTickSize) --  (90-\x:\TimeDiskRadius);
+			
+			\node[scale=\TimeDiskSixHourLabelScale,font=\normalsize] at (90-\x:\TimeDiskRadius-\TimeDiskSixHourTickSize-2*\TimeDiskSixHourLabelOffset) {\hour};
+		\else
+			% Is it one of the hours?
+			\pgfmathparse{mod(\x,15)}
+			\ifnum0=\pgfmathresult\relax
+				% Medium: thicker, bigger lines, with label
+				\pgfmathsetmacro{\hour}{int(\x/15)}
+				\draw[line width=\TimeDiskOneHourTickWidth] (90-\x:\TimeDiskRadius) --  (90-\x:\TimeDiskRadius-\TimeDiskOneHourTickSize);
+				\node[scale=\TimeDiskOneHourLabelScale,font=\normalsize,rotate=0] at (90-\x:\TimeDiskRadius-\TimeDiskOneHourTickSize-2*\TimeDiskOneHourLabelOffset) {\hour};
+			\else
+				% Is it a half hour?
+				\pgfmathparse{mod(\x,7.5)}
+				\ifnum0=\pgfmathresult\relax
+					% Medium: thicker, bigger lines, with label
+					\draw[line width=\TimeDiskHalfHourTickWidth] (90-\x:\TimeDiskRadius) --  (90-\x:\TimeDiskRadius-\TimeDiskHalfHourTickSize);
+				\else
+					% Is it a quarter hour?
+					\pgfmathparse{mod(\x,3.75)}
+					\ifnum0=\pgfmathresult\relax
+						% Medium: thicker, bigger lines, with label
+						\draw[line width=\TimeDiskQuarterHourTickWidth] (90-\x:\TimeDiskRadius) --  (90-\x:\TimeDiskRadius-\TimeDiskQuarterHourTickSize);
+					\fi
+				\fi
+				% minor -- thin, short lines, no label
+%				\draw[line width=\SolarFrameDeclinationMinorLineWidth] (\x:\SolarFrameInnerRadius) --  (\x:\SolarFrameDeclinationMinorLineLength+\SolarFrameInnerRadius);
+			\fi
+		\fi
+	}
+	%%%%%%%%%%%%
+	
+	
 	
 	% "Time"
 	\node[scale=\TimeDiskLabelScale,font=\normalsize] at (0,-\TimeDiskLabelRadius) {Time Dial};
