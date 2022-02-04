@@ -127,9 +127,13 @@
 
 
 % Page Positioning
-\newcommand*{\QRXShift}{6cm}
-\newcommand*{\QRYShift}{8cm}
-\newcommand*{\QRRotation}{0}
+\newcommand*{\FoldKeyXShift}{6cm}
+\newcommand*{\FoldKeyYShift}{8cm}
+\newcommand*{\FoldKeyRotation}{0}
+
+%\newcommand*{\QRXShift}{6cm}
+%\newcommand*{\QRYShift}{8cm}
+%\newcommand*{\QRRotation}{0}
 
 \newcommand*{\RegMarkUpperLeftXShift}{-11.5cm}
 \newcommand*{\RegMarkUpperLeftYShift}{10.5cm}
@@ -200,6 +204,19 @@
 \newcommand*{\RegMarkCornerLength}{2cm}
 \newcommand*{\RegMarkCornerMargin}{1cm}
 
+
+% Folding Key — inspired by https://www.cutoutfoldup.com/1804-key-to-symbols-in-fold-diagrams.php.
+\newcommand*{\FoldKeyScale}{1cm}
+\newcommand*{\FoldKeyLineWidth}{1pt}
+\newcommand*{\FoldKeyLengthA}{1.5cm}  % slightly down and more to the right
+\newcommand*{\FoldKeyLengthB}{2.5cm}  % up and to the right
+\newcommand*{\FoldKeyLengthC}{1.5cm}  % more down and slightly to the right
+\newcommand*{\FoldKeyAngleA}{-15}  % slightly down and more to the right
+\newcommand*{\FoldKeyAngleB}{45}  % up and to the right
+\newcommand*{\FoldKeyAngleC}{-60}  % more down and slightly to the right
+\newcommand*{\FoldKeyTextScale}{0.9}
+
+
 % Help Card
 \newcommand*{\HelpCardBorderWidth}{\OutlineWidth}
 \newcommand*{\HelpCardHeight}{7cm}
@@ -256,6 +273,8 @@
 \newcommand*{\SunCarriageWidth}{1.8cm}
 \newcommand*{\SunCarriageHeight}{\SunCarriageWidth}
 \newcommand*{\SunCarriageInternalWidth}{0.4cm}
+\newcommand*{\SunCarriageIndicatorSize}{0.2cm}
+\newcommand*{\SunCarriageFlapWidth}{0.3cm} % Slightly more than \SunCarriageInternalWidth/2
 \newcommand*{\SunCarriageInternalCircleRadii}{0.30cm} % US standard diameter is 1/4"–5/16 in (6-8mm)
 \newcommand*{\SunCarriageInternalCircleCrosshairs}{0.3*\SunCarriageInternalCircleRadii} 
 \newcommand*{\SunCarriageInternalCircleLineStyle}{}
@@ -337,6 +356,8 @@
 %\resizebox{\textwidth}{!}{%
 
 
+
+
 \begin{tikzpicture}
 
 
@@ -349,6 +370,54 @@
 %	\node at (0,0) {\includegraphics[width=2.5cm]{qr_to_website.png}};
 %
 %\end{scope}
+
+
+
+
+
+
+
+% ------------------------------------------------------------------------- %
+% Draw the HELPER CARD
+% ------------------------------------------------------------------------- %
+\begin{scope}[xshift=\FoldKeyXShift,yshift=\FoldKeyYShift,rotate=\FoldKeyRotation]
+	
+	% Draw the Folding Key outline:
+	\draw[line width=\FoldKeyLineWidth] (\FoldKeyAngleC:0.5*\FoldKeyLengthC) 
+	-- ++(\FoldKeyAngleB:0.5*\FoldKeyLengthB)
+	-- ++(\FoldKeyAngleA:\FoldKeyLengthA) 
+	-- ++(\FoldKeyAngleC:-\FoldKeyLengthC) 
+	-- ++(\FoldKeyAngleA:-\FoldKeyLengthA) 
+	-- ++(\FoldKeyAngleB:-\FoldKeyLengthB) 
+	-- ++(\FoldKeyAngleA:-\FoldKeyLengthA) 
+	-- ++(\FoldKeyAngleC:\FoldKeyLengthC) 
+	-- ++(\FoldKeyAngleA:\FoldKeyLengthA) -- cycle;
+	
+	% Draw the mountain fold indicator
+	\draw[\mountainFold,line width=1pt]
+		({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)}) 
+		-- ({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)});
+	% Draw the valley fold indicator
+	\draw[\valleyFold,line width=1pt]
+		({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)}) 
+		-- ({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)});
+	
+	% "Mountain fold" label
+	\node[font=\normalsize, scale=\FoldKeyTextScale] at ({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)+0.25cm})  {Mountain fold};
+	
+	% "Mountain fold" label
+	\node[font=\normalsize, scale=\FoldKeyTextScale] at ({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)-0.25cm}) {Valley fold};
+
+\end{scope}
+
+
+
+
+
+
+
+
+
 
 % ------------------------------------------------------------------------- %
 % Draw the HELPER CARD
@@ -605,45 +674,28 @@
 
 	% Left hole
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
+	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
 		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) 
 		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
-		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-%	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) -- 
-%	(-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
-%	(-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) -- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
-%	(-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
-%	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) --(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
+	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
+		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
 	
 	
 	% Right hole
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
+	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
 		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) 
 		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
-	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
-		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-%	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) -- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-%	(\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) -- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-%	(\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2);
-%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-%	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) -- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
+	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
+	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
+		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
 	
 	% Folding line
 	\ifLaserCutFolds
@@ -660,34 +712,80 @@
 \else
 	
 	
-	% Draw the Sun Carriage (in this thing to save space)
+%	% Draw the Sun Carriage fill (in this thing to save space)
+%	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+%		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
+%		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth) % left hole
+%		(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth); % right hole
+	
+	% Try drawing Sun Carriage without rects specifically
 	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
-		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
-		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
-		(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
-	% Folding line
+		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
+		% Left hole
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
+			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % right-top
+			-- (-\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % right-bot
+			-- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
+			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom
+			-- cycle
+		% Right hole
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
+			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % left-top
+			-- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % left-bot
+			-- (\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
+			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom
+			-- cycle; 
+		
+	% Folding lines
+	% Center line
 	\draw[\mountainFold,line width=1pt]
 		(0,0) -- (0,\SunCarriageHeight);
-		
+	% Flap folds
+	\draw[\mountainFold,line width=1pt]
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth); % left cell top flap
+	\draw[\mountainFold,line width=1pt]
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth); % left cell bottom flap
+	\draw[\mountainFold,line width=1pt]
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth); % right cell top flap
+	\draw[\mountainFold,line width=1pt]
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageInternalWidth); % right cell bottom flap
 		
 		
 	% Indicator lines
+%	\draw[line width=1pt]
+%		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
 	\draw[line width=1pt]
-		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
-	\draw[line width=1pt]
-		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
-	\draw[line width=1pt]
-		(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
-	% Draw hole punch locations (left side)
-	\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-	\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-	\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
-	\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
-	% Draw hole punch locations (right side)
-	\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-	\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-	\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
-	\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+		(-\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2);
+%	\draw[line width=1pt]
+%		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
+%	\draw[line width=1pt]
+%		(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
+		
+%	% Draw hole punch locations (left side)
+%	\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%	\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%	\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+%	\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+%
+%	% Draw hole punch locations (right side)
+%	\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%	\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%	\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+%	\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
 
 
 \fi % \ifLaserCutterMode
@@ -1350,9 +1448,55 @@
 	(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
 	(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
 	(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
-% Folding line
-\draw[\valleyFold,line width=1pt]
-	(0,0) -- (0,\SunCarriageHeight);
+
+	
+	
+	% Try drawing Sun Carriage without rects specifically
+	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
+		% Left hole
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
+			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % right-top
+			-- (-\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % right-bot
+			-- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
+			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom
+			-- cycle
+		% Right hole
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
+			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % left-top
+			-- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % left-bot
+			-- (\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
+			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom
+			-- cycle; 
+			
+			
+	% Fold lines
+	\draw[\valleyFold,line width=1pt]
+		(0,0) -- (0,\SunCarriageHeight); % Folds Solar Carriage in half
+	\draw[\valleyFold,line width=1pt]
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth); % left cell top flap 
+	\draw[\valleyFold,line width=1pt]
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth); % right cell top flap 
+	\draw[\valleyFold,line width=1pt]
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth); % left cell bottom flap 
+	\draw[\valleyFold,line width=1pt]
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageInternalWidth); % right cell bottom flap 
+	
+	
 %% Indicator lines
 %\draw[line width=1pt]
 %	(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
@@ -1360,16 +1504,17 @@
 %	(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
 %\draw[line width=1pt]
 %	(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
-% Draw hole punch locations (left side)
-\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
-\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
-% Draw hole punch locations (right side)
-\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
-\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
-\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+
+%% Draw hole punch locations (left side)
+%\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%\drawHolePunch{-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+%\drawHolePunch{-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+%% Draw hole punch locations (right side)
+%\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii};
+%\drawHolePunch{\SunCarriageInternalWidth+\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
+%\drawHolePunch{\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii}{\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageInternalCircleRadii};
 
 
 % Laser cut mode
@@ -1738,10 +1883,10 @@
 	% Indicator lines
 	\draw[line width=1pt]
 		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
-	\draw[line width=1pt]
-		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
-	\draw[line width=1pt]
-		(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
+%	\draw[line width=1pt]
+%		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
+%	\draw[line width=1pt]
+%		(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
 	% Dashed lines for cutting
 	\draw[dotted,line width=1pt]
 		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth);
