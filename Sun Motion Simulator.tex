@@ -60,12 +60,15 @@
 %\PrintInstructionstrue  % set \PrintInstructions to true
 
 \newif\ifLaserCutterMode  % if true, color laser-cutter lines a special color
-%\LaserCutterModetrue  % set \LaserCutterMode to true
+\LaserCutterModetrue  % set \LaserCutterMode to true
 \newcommand*{\LaserCutterKerf}{0.04cm}  % width of the laser beam's cut
 
 \newif\ifLaserCutFolds  % if true, use laser-cutter to perforate folds (ignored if \LaserCutterMode is false)
 \LaserCutFoldstrue  % set \LaserCutFolds to true
 \newcommand*{\LaserCutFoldWidth}{0.2cm}  % extra space at edges for fold
+
+\newif\ifUseHDTeeth  % if true, use laser-cutter to create "teeth" along the Horizon Disk incision instead of a line
+%\UseHDTeethtrue % set \UseHDTeeth to true
 
 
 \newif\ifPrintWishlist  % if true, print page of wishlist (for developer's use only.)
@@ -247,6 +250,12 @@
 \newcommand*{\HorizonDiskSolarFrameLineWidth}{\OutlineWidth}
 \newcommand*{\HorizonDiskTapeMeScale}{0.8}
 
+\newcommand*{\HorizonDiskTeeth}{3} % How many teeth on each side (IGNORED if \UseHDTeeth is unset)
+\newcommand*{\HorizonDiskTeethMinRadius}{0.5*\HorizonDiskRadius} % Inner boundary of teeth
+\newcommand*{\HorizonDiskTeethMaxRadius}{0.9*\HorizonDiskRadius} % Outer boundary of teeth
+\newcommand*{\HorizonDiskTeethLength}{0.15cm} % How long the teeth are past the center line
+\newcommand*{\HorizonDiskTeethHeight}{{(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)}} % Outer boundary of teeth — shortcut, not a setting
+
 
 
 % Time Disk
@@ -297,6 +306,7 @@
 	\draw[line width=\SunCarriageInternalCircleLineWidth] (#1-\SunCarriageInternalCircleCrosshairs,#2) -- (#1+\SunCarriageInternalCircleCrosshairs,#2);
 	\draw[line width=\SunCarriageInternalCircleLineWidth] (#1,#2-\SunCarriageInternalCircleCrosshairs) -- (#1,#2+\SunCarriageInternalCircleCrosshairs);
 }
+
 
 
 % Solar Frame
@@ -399,36 +409,39 @@
 
 
 % ------------------------------------------------------------------------- %
-% Draw the HELPER CARD
+% Draw the FOLD KEY
 % ------------------------------------------------------------------------- %
 \begin{scope}[xshift=\FoldKeyXShift,yshift=\FoldKeyYShift,rotate=\FoldKeyRotation]
 	
-	% Draw the Folding Key outline:
-	\draw[line width=\FoldKeyLineWidth] (\FoldKeyAngleC:0.5*\FoldKeyLengthC) 
-	-- ++(\FoldKeyAngleB:0.5*\FoldKeyLengthB)
-	-- ++(\FoldKeyAngleA:\FoldKeyLengthA) 
-	-- ++(\FoldKeyAngleC:-\FoldKeyLengthC) 
-	-- ++(\FoldKeyAngleA:-\FoldKeyLengthA) 
-	-- ++(\FoldKeyAngleB:-\FoldKeyLengthB) 
-	-- ++(\FoldKeyAngleA:-\FoldKeyLengthA) 
-	-- ++(\FoldKeyAngleC:\FoldKeyLengthC) 
-	-- ++(\FoldKeyAngleA:\FoldKeyLengthA) -- cycle;
-	
-	% Draw the mountain fold indicator
-	\draw[\mountainFold,line width=1pt]
-		({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)}) 
-		-- ({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)});
-	% Draw the valley fold indicator
-	\draw[\valleyFold,line width=1pt]
-		({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)}) 
-		-- ({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)});
-	
-	% "Mountain fold" label
-	\node[font=\normalsize, scale=\FoldKeyTextScale] at ({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)+0.25cm})  {Mountain fold};
-	
-	% "Mountain fold" label
-	\node[font=\normalsize, scale=\FoldKeyTextScale] at ({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)-0.25cm}) {Valley fold};
-
+	\ifLaserCutterMode
+		 % Do nothing
+	\else
+		% Draw the Folding Key outline:
+		\draw[line width=\FoldKeyLineWidth] (\FoldKeyAngleC:0.5*\FoldKeyLengthC) 
+		-- ++(\FoldKeyAngleB:0.5*\FoldKeyLengthB)
+		-- ++(\FoldKeyAngleA:\FoldKeyLengthA) 
+		-- ++(\FoldKeyAngleC:-\FoldKeyLengthC) 
+		-- ++(\FoldKeyAngleA:-\FoldKeyLengthA) 
+		-- ++(\FoldKeyAngleB:-\FoldKeyLengthB) 
+		-- ++(\FoldKeyAngleA:-\FoldKeyLengthA) 
+		-- ++(\FoldKeyAngleC:\FoldKeyLengthC) 
+		-- ++(\FoldKeyAngleA:\FoldKeyLengthA) -- cycle;
+		
+		% Draw the mountain fold indicator
+		\draw[\mountainFold,line width=1pt]
+			({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)}) 
+			-- ({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)});
+		% Draw the valley fold indicator
+		\draw[\valleyFold,line width=1pt]
+			({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)}) 
+			-- ({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)});
+		
+		% "Mountain fold" label
+		\node[font=\normalsize, scale=\FoldKeyTextScale] at ({0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)-0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)+0.25cm})  {Mountain fold};
+		
+		% "Mountain fold" label
+		\node[font=\normalsize, scale=\FoldKeyTextScale] at ({-0.5*\FoldKeyLengthB*cos(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*cos(\FoldKeyAngleC)},{-0.5*\FoldKeyLengthB*sin(\FoldKeyAngleB)+0.5*\FoldKeyLengthC*sin(\FoldKeyAngleC)-0.25cm}) {Valley fold};
+	\fi % \ifLaserCutterMode
 \end{scope}
 
 
@@ -506,27 +519,77 @@
 %		-- (\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
 %		-- cycle;
 		
+	% Bottom right arc
 	\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
 	({-90+asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
 	arc[start angle={-90+asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},end angle={0-asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},radius=\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2];
-
+	
+	% Top right arc
 	\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
 	({0+asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
 	arc[start angle={0+asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},end angle={90-asin(\HorizonDiskIncisionWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},radius=\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2];
-
+	
+	% Top left arc
 	\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
 	({90+asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
 	arc[start angle={90+asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},end angle={180-asin(\HorizonDiskIncisionWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},radius=\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2];
-
+	
+	% Bottom left arc
 	\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
 	({180+asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
 	arc[start angle={180+asin(\LaserCutterHalfTieWidth/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},end angle={270-asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)},radius=\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2];
 	
-	\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
-	({270-asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
-		-- (-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
-		-- (\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
-		-- ({-90+asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2);
+
+	% Incision
+	\ifUseHDTeeth
+			% TEETH
+		% Disk to teeth (left side)
+		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
+			({270-asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
+			-- (-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,-\HorizonDiskTeethMaxRadius)
+			-- (0,-\HorizonDiskTeethMaxRadius)
+			% TEETH: 
+			\foreach \tooth in {1,...,\HorizonDiskTeeth} { 
+				-- ++(\HorizonDiskTeethLength,0) % tooth from left to right
+				-- ++(0,\HorizonDiskTeethHeight) % tooth on right side
+				-- ++(-2*\HorizonDiskTeethLength,0) % tooth from right to left
+				-- ++(0,\HorizonDiskTeethHeight) % tooth on left side
+				-- ++(\HorizonDiskTeethLength,0) % bring to center
+			}
+			-- (0,-\HorizonDiskTeethMinRadius)
+			-- (-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,-\HorizonDiskTeethMinRadius) % Teeth to center (left side)
+			-- (-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)  % top left of center
+			-- (\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)% top right of center
+			% Right side
+			-- (\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,-\HorizonDiskTeethMinRadius)
+			-- ++(-\HorizonDiskIncisionWidth,0) % Center to teeth (right side)
+			% We COULD trace the teeth back (possibly even with a gap)...but let's just use the original incision
+			(\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,-\HorizonDiskTeethMaxRadius) 
+			-- ({-90+asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2); % Teeth to bottom right arc
+		
+		% Draw fold aids in the teeth?
+		\ifLaserCutFolds
+			\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
+			\foreach \tooth in {1,...,\HorizonDiskTeeth} {
+				% Tooth from left
+				(-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,{-\HorizonDiskTeethMaxRadius+(2*(\tooth-1)+0.25)*(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)})
+				-- (-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,{-\HorizonDiskTeethMaxRadius+(2*(\tooth-1)+0.75)*(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)})
+				
+				% Tooth from right
+				(\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,{-\HorizonDiskTeethMaxRadius+(2*(\tooth-1)+1.25)*(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)})
+				-- (\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,{-\HorizonDiskTeethMaxRadius+(2*(\tooth-1)+1.75)*(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)})
+				%\LaserCutFoldWidth
+			};
+		\fi   % \ifLaserCutFolds
+
+	\else % \ifUseHDTeeth
+		% Regular, straight-line incision
+		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth]
+		({270-asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
+			-- (-\HorizonDiskIncisionWidth/2+\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
+			-- (\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2,\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2)
+			-- ({-90+asin(\HorizonDiskIncisionWidth/2/\HorizonDiskRadius-\LaserCutterLineWidth/2/\HorizonDiskRadius)}:\HorizonDiskRadius+\HorizonDiskIncisionWidth/2-\LaserCutterLineWidth/2);
+	\fi % \ifUseHDTeeth
 
 \else
 	% Draw the Horizon Disk
@@ -720,58 +783,145 @@
 \ifLaserCutterMode
 
 	% Outline
+	% Bottom side
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		(-\SunCarriageWidth-\OutlineWidth/2+\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,-\OutlineWidth/2+\LaserCutterLineWidth/2) 
 		-- (\SunCarriageWidth+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,-\OutlineWidth/2+\LaserCutterLineWidth/2);
-		
+	% Right side
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		(\SunCarriageWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,-\OutlineWidth/2+\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth)
 		-- (\SunCarriageWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
-
+	% Top side
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		(\SunCarriageWidth+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,\SunCarriageHeight+\OutlineWidth/2-\LaserCutterLineWidth/2)
 		-- (-\SunCarriageWidth-\OutlineWidth/2+\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SunCarriageHeight+\OutlineWidth/2-\LaserCutterLineWidth/2);
-
+	% Left side
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		(-\SunCarriageWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth)
 		-- (-\SunCarriageWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,-\OutlineWidth/2+\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
 
-	% Left hole
-	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
-		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) 
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
-	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
-		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
-		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
-	
-	
-	% Right hole
-	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
-	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
-		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) 
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
+%	% Left hole (without flaps)	
+%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
+%	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
+%		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) 
+%		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
+%		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
+%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
+%	(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
+%		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
+%		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
+%		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
+
+	% Left hole (with flaps), left cutout -- attachments on flaps (hidden!)
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
-	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
-		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
-		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
+		(-\SunCarriageWidth/2-\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap left attachment end point
+		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap left vertex
+		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom left corner
+		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top left corner
+		-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap left vertex
+		-- (-\SunCarriageWidth/2-\LaserCutterHalfTieWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2); % top flap left attachment end point
+	% Left hole (with flaps), right cutout -- attachments on flaps (hidden!)
+	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
+		(-\SunCarriageWidth/2+\LaserCutterHalfTieWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap right attachment end point
+		-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap right vertex
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top right corner
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2+\SunCarriageIndicatorSize+\OutlineWidth/2-\LaserCutterLineWidth/2) % right-top
+		-- (-\SunCarriageInternalWidth-\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2) % right-point
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2) % right-bot
+		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom right corner	
+		-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap right vertex
+		-- (-\SunCarriageWidth/2+\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2); % bottom flap left attachment end point
+
+	
+%	% Right hole (without flaps)
+%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 	
+%	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
+%		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) 
+%		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
+%		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
+%	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
+%	(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth) 
+%		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) 
+%		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2)
+%		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth);
+
+
+	% Right hole (with flaps), right cutout -- attachments on flaps (hidden!)
+	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
+		(\SunCarriageWidth/2+\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap right attachment end point
+		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap right vertex
+		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom right corner
+		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top right corner
+		-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap right vertex
+		-- (\SunCarriageWidth/2+\LaserCutterHalfTieWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2); % top flap right attachment end point
+	% Right hole (with flaps), left cutout -- attachments on flaps (hidden!)
+	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
+		(\SunCarriageWidth/2-\LaserCutterHalfTieWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap left attachment end point
+		-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap left vertex
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top left corner
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2+\SunCarriageIndicatorSize+\OutlineWidth/2-\LaserCutterLineWidth/2) % left-top
+		-- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize+\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2) % left-point
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2) % left-bot
+		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom left corner	
+		-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap left vertex
+		-- (\SunCarriageWidth/2-\LaserCutterHalfTieWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2); % bottom flap right attachment end point
 	
 	% Folding line
 	\ifLaserCutFolds
-%		\draw[style=LaserCutterFoldAid,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-%		(0,0) -- (0,\SunCarriageHeight);
+		% Center crease
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(0,0) -- (0,\LaserCutFoldWidth); % bottom
+		% Center crease
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(0,\SunCarriageHeight/2-\LaserCutFoldWidth) -- (0,\SunCarriageHeight/2+\LaserCutFoldWidth); % middle
+		% Center crease
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(0,\SunCarriageHeight) -- (0,\SunCarriageHeight-\LaserCutFoldWidth); % top
 		
+		% Left hole, top flap
 		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-		(0,0) -- (0,\LaserCutFoldWidth);
+			(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth) 
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth); % upper left
 		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-		(0,\SunCarriageHeight/2-\LaserCutFoldWidth) -- (0,\SunCarriageHeight/2+\LaserCutFoldWidth);
+			(-\SunCarriageWidth/2-\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth) 
+			-- (-\SunCarriageWidth/2+\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth); % primary fold aid	
 		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
-		(0,\SunCarriageHeight) -- (0,\SunCarriageHeight-\LaserCutFoldWidth);
+			(-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth) 
+			-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth); % upper right
+		
+		% Left hole, bottom flap
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth) 
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % lower left
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(-\SunCarriageWidth/2-\LaserCutFoldWidth/2,\SunCarriageInternalWidth) 
+			-- (-\SunCarriageWidth/2+\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % primary fold aid	
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth) 
+			-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % lower right
+		
+		% Right hole, top flap
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth) 
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth); % upper right
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(\SunCarriageWidth/2+\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth) 
+			-- (\SunCarriageWidth/2-\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth); % primary fold aid	
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth) 
+			-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutFoldWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth); % upper left
+		
+		% left hole, bottom flap
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth) 
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2-\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % lower right
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(\SunCarriageWidth/2+\LaserCutFoldWidth/2,\SunCarriageInternalWidth) 
+			-- (\SunCarriageWidth/2-\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % primary fold aid	
+		\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth]
+			(\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth) 
+			-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % lower left
+
 	\fi
 \else
 	
