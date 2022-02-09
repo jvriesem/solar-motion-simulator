@@ -68,7 +68,7 @@
 \newcommand*{\LaserCutFoldWidth}{0.2cm}  % extra space at edges for fold
 
 \newif\ifUseHDTeeth  % if true, use laser-cutter to create "teeth" along the Horizon Disk incision instead of a line
-%\UseHDTeethtrue % set \UseHDTeeth to true
+\UseHDTeethtrue % set \UseHDTeeth to true
 
 
 \newif\ifPrintWishlist  % if true, print page of wishlist (for developer's use only.)
@@ -231,38 +231,14 @@
 \newcommand*{\HelpDiskTextMargin}{0.25cm}
 
 
-% Horizon Disk
-\newcommand*{\HorizonDiskRadius}{4cm}
-\newcommand*{\HorizonDiskNinetyDegTickSize}{0.8cm}
-\newcommand*{\HorizonDiskNinetyDegTickWidth}{0.05cm}
-\newcommand*{\HorizonDiskNinetyDegLabelOffset}{0.35cm}
-\newcommand*{\HorizonDiskNinetyDegLabelScale}{1.5}
-\newcommand*{\HorizonDiskThirtyDegTickSize}{0.6cm}
-\newcommand*{\HorizonDiskThirtyDegTickWidth}{0.02cm}
-\newcommand*{\HorizonDiskThirtyDegLabelOffset}{0.25cm}
-\newcommand*{\HorizonDiskThirtyDegLabelScale}{0.9}
-\newcommand*{\HorizonDiskTenDegTickSize}{0.4cm}
-\newcommand*{\HorizonDiskFiveDegTickSize}{0.3cm}
-\newcommand*{\HorizonDiskOneDegTickSize}{0.2cm}
-\newcommand*{\HorizonDiskLabelRadius}{0.30*\HorizonDiskRadius}
-\newcommand*{\HorizonDiskLabelScale}{1.5}
-\newcommand*{\HorizonDiskIncisionWidth}{\IncisionWidth}
-\newcommand*{\HorizonDiskSolarFrameLineWidth}{\OutlineWidth}
-\newcommand*{\HorizonDiskTapeMeScale}{0.8}
-
-\newcommand*{\HorizonDiskTeeth}{3} % How many teeth on each side (IGNORED if \UseHDTeeth is unset)
-\newcommand*{\HorizonDiskTeethMinRadius}{0.5*\HorizonDiskRadius} % Inner boundary of teeth
-\newcommand*{\HorizonDiskTeethMaxRadius}{0.9*\HorizonDiskRadius} % Outer boundary of teeth
-\newcommand*{\HorizonDiskTeethLength}{0.15cm} % How long the teeth are past the center line
-\newcommand*{\HorizonDiskTeethHeight}{{(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)}} % Outer boundary of teeth — shortcut, not a setting
-
-
 
 % Time Disk
 \newcommand*{\TimeDiskRadius}{3cm}
 \newcommand*{\TimeDiskIncisionExtraSize}{0.0cm}
 %\newcommand*{\TimeDiskIncisionSize}{\TimeDiskRadius+\TimeDiskIncisionExtraSize}
 \newcommand*{\TimeDiskIncisionWidth}{\IncisionWidth}
+
+\newcommand*{\TimeDiskUndersideAlignmentLineWidth}{0.03cm}
 
 \newcommand*{\TimeDiskCardinalHourTickSize}{0.5cm}
 \newcommand*{\TimeDiskCardinalHourTickWidth}{0.07cm}
@@ -317,17 +293,17 @@
 \newcommand*{\SolarFrameCenterLatitudeArcRadius}{3cm}
 
 \newcommand*{\SolarFrameDeclinationMajorLineWidth}{0.05cm}
-\newcommand*{\SolarFrameDeclinationMajorLineLength}{0.3cm}
-\newcommand*{\SolarFrameDeclinationMajorLineLabelOffset}{0.4cm}
-\newcommand*{\SolarFrameDeclinationMajorLineLabelScale}{1.0}
+\newcommand*{\SolarFrameDeclinationMajorLineLength}{0.45cm}
+\newcommand*{\SolarFrameDeclinationMajorLineLabelOffset}{0.35cm}
+\newcommand*{\SolarFrameDeclinationMajorLineLabelScale}{0.7}
 
-\newcommand*{\SolarFrameDeclinationMedLineWidth}{0.02cm}
-\newcommand*{\SolarFrameDeclinationMedLineLength}{0.2cm}
+\newcommand*{\SolarFrameDeclinationMedLineWidth}{0.03cm}
+\newcommand*{\SolarFrameDeclinationMedLineLength}{0.43cm}
 \newcommand*{\SolarFrameDeclinationMedLineLabelOffset}{0.3cm}
 \newcommand*{\SolarFrameDeclinationMedLineLabelScale}{1.0}
 
-\newcommand*{\SolarFrameDeclinationMinorLineWidth}{0.02cm}
-\newcommand*{\SolarFrameDeclinationMinorLineLength}{0.13cm}
+\newcommand*{\SolarFrameDeclinationMinorLineWidth}{0.01cm}
+\newcommand*{\SolarFrameDeclinationMinorLineLength}{0.35cm}
 \newcommand*{\SolarFrameDeclinationMinorLineLabelOffset}{0.3cm}
 \newcommand*{\SolarFrameDeclinationMinorLineLabelScale}{1.0}
 
@@ -358,6 +334,34 @@
 \newcommand*{\SolarFrameExtraFootHeight}{1.0*\SolarFrameFootLength}
 \newcommand*{\FooterSupportLabelOffset}{0.3cm}
 \newcommand*{\FooterSupportLabelScale}{1.4}
+
+
+
+% Horizon Disk
+\newcommand*{\HorizonDiskRadius}{4cm}
+\newcommand*{\HorizonDiskNinetyDegTickSize}{0.8cm}
+\newcommand*{\HorizonDiskNinetyDegTickWidth}{0.05cm}
+\newcommand*{\HorizonDiskNinetyDegLabelOffset}{0.35cm}
+\newcommand*{\HorizonDiskNinetyDegLabelScale}{1.5}
+\newcommand*{\HorizonDiskThirtyDegTickSize}{0.6cm}
+\newcommand*{\HorizonDiskThirtyDegTickWidth}{0.02cm}
+\newcommand*{\HorizonDiskThirtyDegLabelOffset}{0.25cm}
+\newcommand*{\HorizonDiskThirtyDegLabelScale}{0.9}
+\newcommand*{\HorizonDiskTenDegTickSize}{0.4cm}
+\newcommand*{\HorizonDiskFiveDegTickSize}{0.3cm}
+\newcommand*{\HorizonDiskOneDegTickSize}{0.2cm}
+\newcommand*{\HorizonDiskLabelRadius}{0.30*\HorizonDiskRadius}
+\newcommand*{\HorizonDiskLabelScale}{1.5}
+\newcommand*{\HorizonDiskIncisionWidth}{\IncisionWidth}
+\newcommand*{\HorizonDiskSolarFrameLineWidth}{\OutlineWidth}
+\newcommand*{\HorizonDiskTapeMeScale}{0.8}
+
+% Horizon Frame Teeth
+\newcommand*{\HorizonDiskTeeth}{3} % How many teeth on each side (IGNORED if \UseHDTeeth is unset)
+\newcommand*{\HorizonDiskTeethMinRadius}{0.5*\SolarFrameCenterLatitudeArcRadius} % Inner boundary of teeth
+\newcommand*{\HorizonDiskTeethMaxRadius}{0.9*\SolarFrameCenterLatitudeArcRadius} % Outer boundary of teeth
+\newcommand*{\HorizonDiskTeethLength}{0.15cm} % How long the teeth are past the center line
+\newcommand*{\HorizonDiskTeethHeight}{{(\HorizonDiskTeethMaxRadius-\HorizonDiskTeethMinRadius)/(2*\HorizonDiskTeeth)}} % Outer boundary of teeth — shortcut, not a setting
 
 
 % ------------------------------------------------------------------------- %
@@ -826,7 +830,7 @@
 		-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap right vertex
 		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top right corner
 		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2+\SunCarriageIndicatorSize+\OutlineWidth/2-\LaserCutterLineWidth/2) % right-top
-		-- (-\SunCarriageInternalWidth-\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2) % right-point
+		-- (-\SunCarriageInternalWidth+\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2) % right-point
 		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2-\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2) % right-bot
 		-- (-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom right corner	
 		-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap right vertex
@@ -860,7 +864,7 @@
 		-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top flap left vertex
 		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight-\SunCarriageInternalWidth-\OutlineWidth/2+\LaserCutterLineWidth/2) % top left corner
 		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2+\SunCarriageIndicatorSize+\OutlineWidth/2-\LaserCutterLineWidth/2) % left-top
-		-- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize+\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2) % left-point
+		-- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize+\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageHeight/2) % left-point
 		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageHeight/2-\SunCarriageIndicatorSize-\OutlineWidth/2+\LaserCutterLineWidth/2) % left-bot
 		-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom left corner	
 		-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SunCarriageInternalWidth+\SunCarriageFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2) % bottom flap left vertex
@@ -942,7 +946,7 @@
 			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
 			-- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
 			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % right-top
-			-- (-\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
+			-- (-\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
 			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % right-bot
 			-- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
 			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
@@ -956,7 +960,7 @@
 			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
 			-- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
 			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % left-top
-			-- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
+			-- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
 			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % left-bot
 			-- (\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
 			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
@@ -986,7 +990,7 @@
 %	\draw[line width=1pt]
 %		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
 	\draw[line width=1pt]
-		(-\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2);
+		(-\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2);
 %	\draw[line width=1pt]
 %		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
 %	\draw[line width=1pt]
@@ -1107,14 +1111,22 @@
 %		\draw[style=LaserCutterFoldAid,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight) -- (-\SolarFrameFootLength,-\SolarFrameOuterRadius-\SolarFrameFootHeight);
 		
 		% Top solar arm fold
-		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,\SolarFrameInnerRadius) -- (0,\SolarFrameInnerRadius+\LaserCutFoldWidth);
-		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,\SolarFrameOuterRadius) -- (0,\SolarFrameOuterRadius-\LaserCutFoldWidth);
-		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,\SolarFrameOuterRadius/2+\SolarFrameInnerRadius/2+\LaserCutFoldWidth) -- (0,\SolarFrameOuterRadius/2+\SolarFrameInnerRadius/2-\LaserCutFoldWidth);
+%		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,\SolarFrameInnerRadius) -- (0,\SolarFrameInnerRadius+\LaserCutFoldWidth);
+%		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,\SolarFrameOuterRadius) -- (0,\SolarFrameOuterRadius-\LaserCutFoldWidth);
+%		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,\SolarFrameOuterRadius/2+\SolarFrameInnerRadius/2+\LaserCutFoldWidth) -- (0,\SolarFrameOuterRadius/2+\SolarFrameInnerRadius/2-\LaserCutFoldWidth);
+		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] 
+			(0,{\SolarFrameInnerRadius+(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3-\LaserCutFoldWidth/2}) -- (0,{\SolarFrameInnerRadius+(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3+\LaserCutFoldWidth/2});
+		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] 
+			(0,{\SolarFrameInnerRadius+2*(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3-\LaserCutFoldWidth/2}) -- (0,{\SolarFrameInnerRadius+2*(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3+\LaserCutFoldWidth/2});
 		
 		% Bottom solar arm fold
-		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameInnerRadius) -- (0,-\SolarFrameInnerRadius-\LaserCutFoldWidth);
-		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameOuterRadius) -- (0,-\SolarFrameOuterRadius+\LaserCutFoldWidth);
-		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameOuterRadius/2-\SolarFrameInnerRadius/2+\LaserCutFoldWidth) -- (0,-\SolarFrameOuterRadius/2-\SolarFrameInnerRadius/2-\LaserCutFoldWidth);
+%		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameInnerRadius) -- (0,-\SolarFrameInnerRadius-\LaserCutFoldWidth);
+%		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameOuterRadius) -- (0,-\SolarFrameOuterRadius+\LaserCutFoldWidth);
+%		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,-\SolarFrameOuterRadius/2-\SolarFrameInnerRadius/2+\LaserCutFoldWidth) -- (0,-\SolarFrameOuterRadius/2-\SolarFrameInnerRadius/2-\LaserCutFoldWidth);
+		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] 
+			(0,{-\SolarFrameInnerRadius-(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3+\LaserCutFoldWidth/2}) -- (0,{-\SolarFrameInnerRadius-(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3-\LaserCutFoldWidth/2});
+		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] 
+			(0,{-\SolarFrameInnerRadius-2*(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3+\LaserCutFoldWidth/2}) -- (0,{-\SolarFrameInnerRadius-2*(\SolarFrameOuterRadius-\SolarFrameInnerRadius)/3-\LaserCutFoldWidth/2});
 		
 		% Central support flap fold
 		\draw[style=LaserCutterCut,color=\LaserCutterColor,line width=\LaserCutterLineWidth] (0,0) -- (-\LaserCutFoldWidth,0);
@@ -1673,6 +1685,12 @@
 % Incision
 \draw[color=\IncisionColor,line width=\TimeDiskIncisionWidth] (90-180:\TimeDiskIncisionExtraSize) -- (90-0:\TimeDiskRadius);
 
+% Helper lines (to assist with footer construction alignment when taping)
+\draw[line width=\TimeDiskUndersideAlignmentLineWidth] 
+	(-\TimeDiskRadius,0) --  (\TimeDiskRadius,0);  % horizontal (3/9, E/W) alignment line
+\draw[line width=\TimeDiskUndersideAlignmentLineWidth] 
+	(0,-\TimeDiskRadius) --  (0,\TimeDiskRadius);  % vertical (6/12, N/S) alignment line
+	
 % "Time"
 %\node[scale=\TimeDiskLabelScale,font=\normalsize] at (0,-\TimeDiskLabelRadius) {Time Dial};
 %\draw[decoration={text along path,
@@ -1713,11 +1731,11 @@
 % ------------------------------------------------------------------------- %
 \begin{scope}[xshift=\SunCarriageXShift,yshift=\SunCarriageYShift,rotate=\SunCarriageRotation]
 
-% Draw the Sun Carriage (in this thing to save space)
-\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
-	(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
-	(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
-	(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
+%% Draw the Sun Carriage (in this thing to save space)
+%\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+%	(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
+%	(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
+%	(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
 
 	
 	
@@ -1731,7 +1749,7 @@
 			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
 			-- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
 			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % right-top
-			-- (-\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
+			-- (-\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
 			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % right-bot
 			-- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
 			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
@@ -1745,7 +1763,7 @@
 			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
 			-- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
 			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % left-top
-			-- (\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
+			-- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
 			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % left-bot
 			-- (\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
 			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
@@ -2320,7 +2338,7 @@
 		\item Add compass markings for solar declination beyond the Sun's extent, but highlight the real ones?
 		\item Add ``Observer's Latitude'' indicator arrow on the Horizon Disk, as with the Time Disk and Solar Arm. 
 		\item Make a version with AM/PM times instead of 24-hour time. Adjust instructions accordingly. 
-		\item Figure out a way to easily adjust the friction between Solar Carriage and Solar Arm. 
+		\item Make a switch to use the Solar Carriage flaps (else just a box)
 		\item Revise the instruction card and instructions to use less jingo. 
 		\item Clarify the license terms somewhere?
 		\item Move the ``S'' off-axis somewhat, since it gets sliced in two otherwise?
