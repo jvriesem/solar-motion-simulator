@@ -57,10 +57,10 @@
 %\PrintHelperLinestrue  % set \printHelperLines to true
 
 \newif\ifPrintInstructions  % if true, print page of instructions
-%\PrintInstructionstrue  % set \PrintInstructions to true
+\PrintInstructionstrue  % set \PrintInstructions to true
 
 \newif\ifLaserCutterMode  % if true, color laser-cutter lines a special color
-\LaserCutterModetrue  % set \LaserCutterMode to true
+%\LaserCutterModetrue  % set \LaserCutterMode to true
 \newcommand*{\LaserCutterKerf}{0.04cm}  % width of the laser beam's cut
 
 \newif\ifLaserCutFolds  % if true, use laser-cutter to perforate folds (ignored if \LaserCutterMode is false)
@@ -2225,47 +2225,108 @@
 	
 	% ------------------------------------------------------------------------- %
 	\section{Cutting out pieces}
-	First, cut out the Time Dial and Horizon Disk as well as the rectangular Base Support. Cut out the outline of the Solar Frame, then carefully cut out its interior. 
+	First, cut out the Time Dial and Observer's Horizon as well as the rectangular Base Support. Cut out the outline of the Solar Frame, then carefully cut out its interior. 
 	
-	BEFORE cutting out the small rectangle with two smaller rectangles, cut out the smaller rectangles first. This is the most difficult step. It can be helpful to use a pen/pencil to pierce the center of the interior rectangles, then carefully cut a $\times$ shape from each corner to the center, as is shown below.
+	BEFORE cutting out the small rectangle with two smaller rectangles, cut out the interior regions first. This is the most difficult step. 
+	%It can be helpful to use a pen/pencil to pierce the center of the interior rectangles, then carefully cut a $\times$ shape from each corner to the center, as is shown below.
 	\begin{center}
 	\begin{tikzpicture}
 	\begin{scope}[xscale=0.7,yscale=0.7]
 	% Draw the Sun Carriage (in this thing to save space)
-	\draw[fill=gray!20,even odd rule,line width=\OutlineWidth] 
-		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
-		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
-		(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
-	% Folding line
-	\draw[dashed,line width=1pt]
-		(0,0) -- (0,\SunCarriageHeight);
-	% Indicator lines
-	\draw[line width=1pt]
-		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
-%	\draw[line width=1pt]
-%		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
-%	\draw[line width=1pt]
-%		(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
-	% Dashed lines for cutting
-	\draw[dotted,line width=1pt]
-		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth);
-	\draw[dotted,line width=1pt]
-		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth);
+	
+	
+	% Try drawing Sun Carriage without rects specifically
+	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
+		% Left hole
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
+			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % right-top
+			-- (-\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) % right-point
+			-- (-\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % right-bot
+			-- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
+			-- (-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
+			-- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom
+			-- cycle
+		% Right hole
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom right corner
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top right corner
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap right vertex
+			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageHeight-\SunCarriageInternalWidth-\SunCarriageFlapWidth) % top flap left vertex
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) % top left corner
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2+\SunCarriageIndicatorSize) % left-top
+			-- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2) % left-point
+			-- (\SunCarriageInternalWidth,\SunCarriageHeight/2-\SunCarriageIndicatorSize) % left-bot
+			-- (\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
+			-- (\SunCarriageInternalWidth+\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap left vertex
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth-\SunCarriageFlapWidth,\SunCarriageInternalWidth+\SunCarriageFlapWidth) % bottom flap right vertex
+			-- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom
+			-- cycle; 
 		
-	\draw[dotted,line width=1pt]
-		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth);
-	\draw[dotted,line width=1pt]
-		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageInternalWidth);
+	% Folding lines
+	% Center line
+	\draw[\mountainFold,line width=1pt]
+		(0,0) -- (0,\SunCarriageHeight);
+	% Flap folds
+	\draw[\mountainFold,line width=1pt]
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth); % left cell top flap
+	\draw[\mountainFold,line width=1pt]
+		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth); % left cell bottom flap
+	\draw[\mountainFold,line width=1pt]
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth); % right cell top flap
+	\draw[\mountainFold,line width=1pt]
+		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageInternalWidth); % right cell bottom flap
+		
+	% Labels
+	\node[scale=0.9,font=\normalsize,rotate=90] at (-\SunCarriageWidth+\SunCarriageInternalWidth/2,\SunCarriageHeight/2) {Sun};
+	\node[scale=0.9,font=\normalsize,rotate=-90] at (\SunCarriageWidth-\SunCarriageInternalWidth/2,\SunCarriageHeight/2) {Sun};
+		
+	% Indicator lines
+%	\draw[line width=1pt]
+%		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
+	\draw[line width=1pt]
+		(-\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2);
+	
+	
+%	\draw[fill=gray!20,even odd rule,line width=\OutlineWidth] 
+%		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
+%		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
+%		(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
+%	% Folding line
+%	\draw[dashed,line width=1pt]
+%		(0,0) -- (0,\SunCarriageHeight);
+%	% Indicator lines
+%	\draw[line width=1pt]
+%		(-\SunCarriageInternalWidth,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth,\SunCarriageHeight/2);
+%%	\draw[line width=1pt]
+%%		(-\SunCarriageWidth,\SunCarriageHeight/2) -- (-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight/2);
+%%	\draw[line width=1pt]
+%%		(\SunCarriageWidth,\SunCarriageHeight/2) -- (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight/2);
+%	% Dashed lines for cutting
+%	\draw[dotted,line width=1pt]
+%		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth);
+%	\draw[dotted,line width=1pt]
+%		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (-\SunCarriageInternalWidth,\SunCarriageInternalWidth);
+%		
+%	\draw[dotted,line width=1pt]
+%		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth);
+%	\draw[dotted,line width=1pt]
+%		(\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageHeight-\SunCarriageInternalWidth) -- (\SunCarriageInternalWidth,\SunCarriageInternalWidth);
 		
 	\end{scope}
 	\end{tikzpicture}
 	\end{center}
-	Then, you can lift each triangular flap and cut it out separately. Alternatively, you may use a hole punch using the marks shown to approximately cut out the interior. Once the interior regions are removed, you can carefully cut out the outer rectangular shape. 
+	%Then, you can lift each triangular flap and cut it out separately. Alternatively, you may use a hole punch using the marks shown to approximately cut out the interior. Once the interior regions are removed, you can carefully cut out the outer rectangular shape. 
+	On the side marked ``Sun'', fold the interior flaps backward. Later, these flaps will help keep this part from sliding along the Solar Arm by providing friction. 
 	
 	
 	% ------------------------------------------------------------------------- %
 	\section{Incisions}
-	Make an incision along the thick lines on the Horizon Disk and Time Dial. For the Horizon Disk, this is from the center to due south. For the Time Dial, this is from the center to the zero or 24-hour position. Next, make three incisions on the Solar Frame along the three thick, dark lines: one from the bottom (near its feet), one below ``Time of day $\downarrow$'', and the other above the $80^\circ$N latitude line. Finally, make the two indicated incisions on the Base Support. If printed on cardstock, make the cuts \emph{slightly} wider to accommodate the thickness of the paper. %(Do not make the cuts too wide at first: they can be widened later.)
+	Make an incision along the thick lines on the Observer's Horizon and Time Dial. For the Horizon Disk, this is from the center to due south. For the Time Dial, this is from the center to the zero or 24-hour position. Next, make three incisions on the Solar Frame along the three thick, dark lines: one from the bottom (near its feet), one below ``Time of day $\downarrow$'', and the other above the $80^\circ$N latitude line. Finally, make the two indicated incisions on the Base Support. If printed on cardstock, make the cuts \emph{slightly} wider to accommodate the thickness of the paper. %(Do not make the cuts too wide at first: they can be widened later.)
 	
 	
 	% ------------------------------------------------------------------------- %
@@ -2301,13 +2362,13 @@
 	% ------------------------------------------------------------------------- %
 	\section{How to Use}
 	\subsection{Adjust the Viewing Latitude}
-	The latitude of the observer can be adjusted by rotating the horizon disk. The southern edge of the horizon disk will point to the observer's latitude on the ``Observer's Latitude'' track. 
+	The latitude of the observer can be adjusted by rotating the Observer's Horizon. The southern edge of the horizon disk will point to the observer's latitude on the ``Observer's Latitude'' track. 
 	
 	\subsection{Adjusting the Time of Year}
-	At different times of the year, Earth's tilt causes the Sun to appear more north or more south of the celestial equator (0$^\circ$ declination). Move the Sun slider to the appropriate declination. The solar declination is approximately +23.5$^\circ$ on/near June~20/21, -23.5$^\circ$ on/near December~21, and 0$^\circ$ at either equinox (March~19/20 or September~22/23). 
+	At different times of the year, Earth's tilt causes the Sun to appear more north or more south of the celestial equator (0$^\circ$ declination). Move the Sun slider to the appropriate declination for the desired date. The solar declination is approximately +23.5$^\circ$ on/near June~20--21, -23.5$^\circ$ on/near December~21, and 0$^\circ$ at either equinox (March~19--20 or September~22--23). 
 	
 	\subsection{Adjusting the Time of Day}
-	The solar arm (labelled ``Solar Declination'') acts like a hinge. Its position indicates the rotation of the Earth --- or equivalently, the time of day. The solar arm has an indicator at the bottom which points to the time of day on the time dial. For example, at 6~AM the solar arm will be aligned with E (east) on the horizon disk and 6 on the time dial. 
+	The Solar Arm (labelled ``Solar Declination'') acts like a hinge. Its position indicates the rotation of the Earth --- or equivalently, the time of day. The Solar Arm has an indicator at the bottom which points to the time of day on the time dial. For example, at 6~AM the Solar Arm will be aligned with E (east) on the horizon disk and 6 on the Time Dial. 
 	
 	\subsection{Simulating the Sun's Daily Motion}
 	You can simulate the position of the Sun in the sky by pivoting the Solar Arm from 0 (midnight) to 6 (6~AM) to 12 (noon) to 18 (6~PM) to 24 (midnight). The Sun slider represents the Sun. Sunrise happens when the Sun slider crosses from behind the horizon disk (usually in the eastern sky) in the morning. Sunset happens when the Sun slider crosses from above the horizon disk to below it (usually in the western sky) in the evening. Some people find it helpful to rotate the entire model such that the printed Horizon Disk faces up.
