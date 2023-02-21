@@ -12,7 +12,7 @@
 *.log
 *.lot
 *.fls
-#*.out   -- some of STIM's output files use this suffix
+*.out
 *.toc
 *.synctex.gz
 ## Intermediate documents

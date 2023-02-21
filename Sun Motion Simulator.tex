@@ -57,7 +57,7 @@
 %\PrintHelperLinestrue  % set \printHelperLines to true
 
 \newif\ifPrintInstructions  % if true, print page of instructions
-\PrintInstructionstrue  % set \PrintInstructions to true
+\PrintInstructionsfalse  % set \PrintInstructions to true
 
 \newif\ifLaserCutterMode  % if true, color laser-cutter lines a special color
 %\LaserCutterModetrue  % set \LaserCutterMode to true
@@ -112,6 +112,7 @@
 \newcommand*{\LaserCutterHalfTieWidth}{2*\LaserCutterKerf} % Half the width of a "tie" (paper/joiner part in a dashed cut)
 
 % Line Colors
+\newcommand*{\FillColor}{gray!20}
 \newcommand*{\OutlineColor}{black}
 \newcommand*{\IncisionColor}{blue}
 \newcommand*{\LaserCutterColor}{red}
@@ -597,7 +598,7 @@
 
 \else
 	% Draw the Horizon Disk
-	\draw[fill=gray!20] circle[radius=\HorizonDiskRadius];
+	\draw[fill=\FillColor] circle[radius=\HorizonDiskRadius];
 	%\shade[shading=radial, inner color=white, outer color=gray!20] circle[radius=\HorizonDiskRadius];
 	\draw[color=\OutlineColor, line width=\HorizonDiskIncisionWidth] (0,0) circle[radius=\HorizonDiskRadius];
 	\fill[color=black!100] (0,0) circle[radius=0.1cm];
@@ -683,7 +684,7 @@
 		
 \else
 	
-	\draw[fill=gray!20] circle[radius=\TimeDiskRadius];
+	\draw[fill=\FillColor] circle[radius=\TimeDiskRadius];
 	%\shade[shading=radial, inner color=white, outer color=gray!20] circle[radius=\TimeDiskRadius];
 	\draw[color=\OutlineColor, line width=\OutlineWidth] (0,0) circle[radius=\TimeDiskRadius];
 	\fill[color=black!100] (0,0) circle[radius=0.1cm];
@@ -931,13 +932,13 @@
 	
 	
 %	% Draw the Sun Carriage fill (in this thing to save space)
-%	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+%	\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 %		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
 %		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth) % left hole
 %		(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth); % right hole
 	
 	% Try drawing Sun Carriage without rects specifically
-	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+	\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
 		% Left hole
 		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
@@ -1155,7 +1156,7 @@
 \else
 	
 	% Draw the Solar Frame
-	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+	\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 		(0,-\SolarFrameOuterRadius-\SolarFrameFootHeight-\SolarFrameExtraFootHeight)
 		-|
 		({270-asin(\SolarFrameFootLength/\SolarFrameOuterRadius)}:\SolarFrameOuterRadius) arc[start angle={270-asin(\SolarFrameFootLength/\SolarFrameOuterRadius)},end angle={-90+asin(\SolarFrameFootLength/\SolarFrameOuterRadius)},radius=\SolarFrameOuterRadius]
@@ -1308,7 +1309,7 @@
 	
 	% Copyright label
 	\draw[decoration={text along path,
-	      text={|\footnotesize| Copyright 2022 by Jess W. Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
+	      text={|\footnotesize| Copyright 2023 by Jess W. Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
 	
 	% Solar Frame Label
 	\node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -1417,7 +1418,7 @@
 \else
 	
 	% Draw the Footer rectangle
-	\draw[color=\OutlineColor,fill=gray!20, line width=\OutlineWidth] 
+	\draw[color=\OutlineColor,fill=\FillColor, line width=\OutlineWidth] 
 		(-\SolarFrameFootLength,-\SolarFrameExtraFootHeight) rectangle (\SolarFrameFootLength,\SolarFrameFootHeight);
 	% Incision for the Foot Support
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
@@ -1552,7 +1553,7 @@
  % fake URL that does not render as any text, but eats up a bug that causes the URL AFTER the Twitter URL to also point to Twitter. 
 \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}.} \\
 		\bigskip
-		\textbf{\copyright 2022 by Jess W. Vriesema \\of the University of Wisconsin--Eau Claire} \\
+		\textbf{\copyright 2023 by Jess W. Vriesema \\of the University of Wisconsin--Eau Claire} \\
 		\bigskip
 		Feel free to contact me with questions, comments or suggestions.\\
 		Email: \href{mailto:vriesejw@uwec.edu}{vriesejw@uwec.edu} \\
@@ -1575,7 +1576,7 @@
 \begin{scope}[xshift=\HorizonDiskXShift,yshift=\HorizonDiskYShift,rotate=\HorizonDiskRotation]
 
 % Draw the Horizon Disk
-\draw[fill=gray!20] circle[radius=\HorizonDiskRadius];
+\draw[fill=\FillColor] circle[radius=\HorizonDiskRadius];
 %\shade[shading=radial, inner color=white, outer color=gray!20] circle[radius=\HorizonDiskRadius];
 \draw[color=\OutlineColor, line width=\OutlineWidth] (0,0) circle[radius=\HorizonDiskRadius];
 \fill[color=black!100] (0,0) circle[radius=0.1cm];
@@ -1656,7 +1657,7 @@
 % ------------------------------------------------------------------------- %
 \begin{scope}[xshift=\TimeDiskXShift,yshift=\TimeDiskYShift,rotate=\TimeDiskRotation]
 
-\draw[fill=gray!20] circle[radius=\TimeDiskRadius];
+\draw[fill=\FillColor] circle[radius=\TimeDiskRadius];
 %\shade[shading=radial, inner color=white, outer color=gray!20] circle[radius=\TimeDiskRadius];
 \draw[color=\OutlineColor, line width=\OutlineWidth] (0,0) circle[radius=\TimeDiskRadius];
 \fill[color=black!100] (0,0) circle[radius=0.1cm];
@@ -1734,7 +1735,7 @@
 \begin{scope}[xshift=\SunCarriageXShift,yshift=\SunCarriageYShift,rotate=\SunCarriageRotation]
 
 %% Draw the Sun Carriage (in this thing to save space)
-%\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+%\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 %	(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
 %	(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
 %	(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
@@ -1742,7 +1743,7 @@
 	
 	
 	% Try drawing Sun Carriage without rects specifically
-	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+	\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
 		% Left hole
 		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
@@ -1843,7 +1844,7 @@
 % ------------------------------------------------------------------------- %
 \begin{scope}[xshift=\SolarFrameXShift,yshift=\SolarFrameYShift,rotate=\SolarFrameRotation]
 % Draw the Solar Frame
-\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 	(0,-\SolarFrameOuterRadius-\SolarFrameFootHeight-\SolarFrameExtraFootHeight)
 	-|
 	({270-asin(\SolarFrameFootLength/\SolarFrameOuterRadius)}:\SolarFrameOuterRadius) arc[start angle={270-asin(\SolarFrameFootLength/\SolarFrameOuterRadius)},end angle={-90+asin(\SolarFrameFootLength/\SolarFrameOuterRadius)},radius=\SolarFrameOuterRadius]
@@ -2019,7 +2020,7 @@
 
 % Copyright label
 \draw[decoration={text along path,
-      text={|\footnotesize| Copyright 2022 by Jess~W.~Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
+      text={|\footnotesize| Copyright 2023 by Jess~W.~Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
 
 % Solar Frame Label
 \node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -2106,7 +2107,7 @@
 \begin{scope}[xshift=\SolarFrameFootXShift,yshift=\SolarFrameFootYShift,rotate=\SolarFrameFootRotation]
 
 % Draw the Footer rectangle
-\draw[color=\OutlineColor,fill=gray!20, line width=\OutlineWidth] 
+\draw[color=\OutlineColor,fill=\FillColor, line width=\OutlineWidth] 
 	(-\SolarFrameFootLength,-\SolarFrameExtraFootHeight) rectangle (\SolarFrameFootLength,\SolarFrameFootHeight);
 % Incision for the Foot Support
 \draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
@@ -2238,7 +2239,7 @@
 	
 	
 	% Try drawing Sun Carriage without rects specifically
-	\draw[color=\OutlineColor,fill=gray!20,even odd rule,line width=\OutlineWidth] 
+	\draw[color=\OutlineColor,fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight) % Outer outline
 		% Left hole
 		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) % bottom left corner
@@ -2294,7 +2295,7 @@
 		(-\SunCarriageInternalWidth+\SunCarriageIndicatorSize,\SunCarriageHeight/2) -- (\SunCarriageInternalWidth-\SunCarriageIndicatorSize,\SunCarriageHeight/2);
 	
 	
-%	\draw[fill=gray!20,even odd rule,line width=\OutlineWidth] 
+%	\draw[fill=\FillColor,even odd rule,line width=\OutlineWidth] 
 %		(-\SunCarriageWidth,0) rectangle (\SunCarriageWidth,\SunCarriageHeight)
 %		(-\SunCarriageWidth+\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth)
 %		(\SunCarriageInternalWidth,\SunCarriageInternalWidth) rectangle (\SunCarriageWidth-\SunCarriageInternalWidth,\SunCarriageWidth-\SunCarriageInternalWidth);
@@ -2376,7 +2377,7 @@
 	You can simulate the position of the Sun in the sky by pivoting the Solar Arm from 0 (midnight) to 6 (6~AM) to 12 (noon) to 18 (6~PM) to 24 (midnight). The Sun slider represents the Sun. Sunrise happens when the Sun slider crosses from behind the horizon disk (usually in the eastern sky) in the morning. Sunset happens when the Sun slider crosses from above the horizon disk to below it (usually in the western sky) in the evening. Some people find it helpful to rotate the entire model such that the printed Horizon Disk faces up.
 \vfill
 \hrule 
-\noindent\copyright 2022 by \href{https://www.lpl.arizona.edu/~vriesema/}{Jess W. Vriesema} of the University of Wisconsin--Eau Claire. All rights reserved. 
+\noindent\copyright 2023 by \href{https://www.lpl.arizona.edu/~vriesema/}{Jess W. Vriesema} of the University of Wisconsin--Eau Claire. All rights reserved. 
 	\end{multicols}
 \fi % \ifPrintInstructions
 
