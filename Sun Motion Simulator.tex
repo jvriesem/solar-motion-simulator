@@ -134,82 +134,95 @@
 
 
 % Page Positioning
-\newcommand*{\FoldKeyXShift}{5.5cm}
-\newcommand*{\FoldKeyYShift}{8cm}
+\newcommand*{\masterXShift}{1.73cm}
+\newcommand*{\masterYShift}{-10.9cm}
+
+\newcommand*{\FoldKeyXShift}{5.5cm+\masterXShift}
+\newcommand*{\FoldKeyYShift}{8cm+\masterYShift}
 \newcommand*{\FoldKeyRotation}{0}
 
-%\newcommand*{\QRXShift}{6cm}
-%\newcommand*{\QRYShift}{8cm}
+%\newcommand*{\QRXShift}{6cm+\masterXShift}
+%\newcommand*{\QRYShift}{8cm+\masterYShift}
 %\newcommand*{\QRRotation}{0}
 
-\newcommand*{\RegMarkUpperLeftXShift}{-11.5cm}
-\newcommand*{\RegMarkUpperLeftYShift}{10.5cm}
-\newcommand*{\RegMarkLowerRightXShift}{8cm}
-\newcommand*{\RegMarkLowerRightYShift}{-15.42cm}
+\newcommand*{\RegMarkUpperLeftXShift}{-11.5cm+\masterXShift}
+\newcommand*{\RegMarkUpperLeftYShift}{10.5cm+\masterYShift}
+\newcommand*{\RegMarkLowerRightXShift}{8cm+\masterXShift}
+\newcommand*{\RegMarkLowerRightYShift}{-15.42cm+\masterYShift}
 
-\newcommand*{\RegMarkAXShift}{6.5cm}
-\newcommand*{\RegMarkAYShift}{-14cm}
-%\newcommand*{\RegMarkAXShift}{-0.5cm}  % bottom center, next to instruction box
-%\newcommand*{\RegMarkAYShift}{-14cm}
-\newcommand*{\RegMarkBXShift}{-10cm}
-\newcommand*{\RegMarkBYShift}{9cm}
-%\newcommand*{\RegMarkBXShift}{-5cm}  % in the solar frame cavity
-%\newcommand*{\RegMarkBYShift}{7cm}
+\newcommand*{\RegMarkLowerLeftXShift}{-11.5cm+\masterXShift}
+\newcommand*{\RegMarkLowerLeftYShift}{-15.42cm+\masterYShift}
+\newcommand*{\RegMarkUpperRightXShift}{10.5cm+\masterXShift}
+\newcommand*{\RegMarkUpperRightYShift}{8cm+\masterYShift}
 
-\newcommand*{\HelpCardXShift}{-6.35cm}
-\newcommand*{\HelpCardYShift}{-11.5cm}
+\newcommand*{\RegMarkAXShift}{6.5cm+\masterXShift}
+\newcommand*{\RegMarkAYShift}{-14cm+\masterYShift}
+%\newcommand*{\RegMarkAXShift}{-0.5cm+\masterXShift}  % bottom center, next to instruction box
+%\newcommand*{\RegMarkAYShift}{-14cm+\masterYShift}
+\newcommand*{\RegMarkBXShift}{-10cm+\masterXShift}
+\newcommand*{\RegMarkBYShift}{9cm+\masterYShift}
+%\newcommand*{\RegMarkBXShift}{-5cm+\masterXShift}  % in the solar frame cavity
+%\newcommand*{\RegMarkBYShift}{7cm+\masterYShift}
+
+\newcommand*{\HelpCardXShift}{-6.35cm+\masterXShift}
+\newcommand*{\HelpCardYShift}{-11.5cm+\masterYShift}
 \newcommand*{\HelpCardRotation}{0}
 
-%\newcommand*{\HelpCardXShift}{-6.5cm}
-%\newcommand*{\HelpCardYShift}{-11.5cm}
+%\newcommand*{\HelpCardXShift}{-6.5cm+\masterXShift}
+%\newcommand*{\HelpCardYShift}{-11.5cm+\masterYShift}
 %\newcommand*{\HelpCardRotation}{0}
 
-\newcommand*{\HorizonDiskXShift}{3.5cm}
-\newcommand*{\HorizonDiskYShift}{-9.75cm}
+\newcommand*{\HorizonDiskXShift}{3.5cm+\masterXShift}
+\newcommand*{\HorizonDiskYShift}{-9.75cm+\masterYShift}
 \newcommand*{\HorizonDiskRotation}{0}
 
-%\newcommand*{\HorizonDiskXShift}{3cm}
-%\newcommand*{\HorizonDiskYShift}{-10cm}
+%\newcommand*{\HorizonDiskXShift}{3cm+\masterXShift}
+%\newcommand*{\HorizonDiskYShift}{-10cm+\masterYShift}
 %\newcommand*{\HorizonDiskRotation}{0}
 
-\newcommand*{\TimeDiskXShift}{5.05cm}
-\newcommand*{\TimeDiskYShift}{-1.9cm}
+\newcommand*{\TimeDiskXShift}{5.05cm+\masterXShift}
+\newcommand*{\TimeDiskYShift}{-1.9cm+\masterYShift}
 \newcommand*{\TimeDiskRotation}{0}
 
-%\newcommand*{\TimeDiskXShift}{4cm}
-%\newcommand*{\TimeDiskYShift}{-2cm}
+%\newcommand*{\TimeDiskXShift}{4cm+\masterXShift}
+%\newcommand*{\TimeDiskYShift}{-2cm+\masterYShift}
 %\newcommand*{\TimeDiskRotation}{0}
 
-\newcommand*{\SunCarriageXShift}{+6cm}
-\newcommand*{\SunCarriageYShift}{2.625cm}
+\newcommand*{\SunCarriageXShift}{+6cm+\masterXShift}
+\newcommand*{\SunCarriageYShift}{2.625cm+\masterYShift}
 \newcommand*{\SunCarriageRotation}{0}
 
-%\newcommand*{\SunCarriageXShift}{-9cm}
-%\newcommand*{\SunCarriageYShift}{-5.5cm}
+%\newcommand*{\SunCarriageXShift}{-9cm+\masterXShift}
+%\newcommand*{\SunCarriageYShift}{-5.5cm+\masterYShift}
 %\newcommand*{\SunCarriageRotation}{90}
 
-\newcommand*{\SolarFrameXShift}{-3cm}
-\newcommand*{\SolarFrameYShift}{4cm}
+\newcommand*{\SolarFrameXShift}{-3cm+\masterXShift}
+\newcommand*{\SolarFrameYShift}{4cm+\masterYShift}
 \newcommand*{\SolarFrameRotation}{0}
 
-%\newcommand*{\SolarFrameXShift}{-5cm}
-%\newcommand*{\SolarFrameYShift}{4cm}
+%\newcommand*{\SolarFrameXShift}{-5cm+\masterXShift}
+%\newcommand*{\SolarFrameYShift}{4cm+\masterYShift}
 %\newcommand*{\SolarFrameRotation}{0}
 
-\newcommand*{\SolarFrameFootXShift}{-8.9cm}
-\newcommand*{\SolarFrameFootYShift}{-4.5cm}
+\newcommand*{\SolarFrameFootXShift}{-8.9cm+\masterXShift}
+\newcommand*{\SolarFrameFootYShift}{-4.5cm+\masterYShift}
 \newcommand*{\SolarFrameFootRotation}{0}
 
-%\newcommand*{\SolarFrameFootXShift}{4.5cm}
-%\newcommand*{\SolarFrameFootYShift}{6cm}
+%\newcommand*{\SolarFrameFootXShift}{4.5cm+\masterXShift}
+%\newcommand*{\SolarFrameFootYShift}{6cm+\masterYShift}
 %\newcommand*{\SolarFrameFootRotation}{0}
 
 
-% Registration Marks
+% Registration Marks (circle and crosshairs)
 \newcommand*{\RegMarkScale}{0.5cm}
 \newcommand*{\RegMarkCornerLineWidth}{1pt}
 \newcommand*{\RegMarkCornerLength}{2cm}
 \newcommand*{\RegMarkCornerMargin}{1cm}
+\newcommand*{\RegMarkLineStyle}{solid}
+% Corner Alignment Marks (diagonal line and L-shape)
+\newcommand*{\RegMarkSmallLineScale}{0.3cm}
+\newcommand*{\RegMarkDiagonalLineStyle}{solid}
+
 
 
 % Folding Key — inspired by https://www.cutoutfoldup.com/1804-key-to-symbols-in-fold-diagrams.php.
@@ -394,7 +407,59 @@
 
 
 
-\begin{tikzpicture}
+
+%% ------------------------------------------------------------------------- %
+%% Draw the PRINT GUIDES
+%% ------------------------------------------------------------------------- %
+%\begin{tikzpicture}[overlay]
+%% Registration Marks
+%%\begin{scope}[xshift=current page.west,yshift=\RegMarkAYShift,rotate=0]
+%\begin{scope}[shift={([xshift=2cm,yshift=2cm]current page.south west)}]
+%	\draw[\RegMarkLineStyle] (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
+%	\draw[\RegMarkLineStyle] (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
+%	\draw[\RegMarkLineStyle] (0,0) circle (\RegMarkScale);
+%\end{scope}
+%
+%\end{tikzpicture}
+
+
+%\begin{tikzpicture}[remember picture,overlay]
+%  \node [xshift=1cm,yshift=1cm] at (current page.south west)
+%        [text width=7cm,fill=red!20,rounded corners,above right]
+%  {
+%    This is an absolutely positioned text in the
+%    lower left corner. No shipout-hackery is used.
+%  };
+%\end{tikzpicture}
+%\begin{tikzpicture}[remember picture,overlay]
+%\node [xshift=1cm,yshift=1cm] at (current page.south west)
+%[text width=7cm,fill=red!20,rounded corners,above right]
+%{
+%This is an absolutely positioned text in the
+%lower left corner. No shipout-hackery is used.
+%}; 
+%\end{tikzpicture} 
+
+
+
+\begin{tikzpicture}[overlay,remember picture]
+
+
+
+% ------------------------------------------------------------------------- %
+% Draw the PRINT GUIDES
+% ------------------------------------------------------------------------- %
+
+%% Registration Marks
+%%\begin{scope}[xshift=current page.west,yshift=\RegMarkAYShift,rotate=0]
+%\begin{scope}[shift={([xshift=1cm,yshift=1cm]current page.north west)}]
+%	\draw[\RegMarkLineStyle] (-0.5cm,0) -- (0.5cm,0);
+%	\draw[\RegMarkLineStyle] (0,-0.5cm) -- (0,0.5cm);
+%	\draw[\RegMarkLineStyle] (0,0) circle (0.5cm);
+%\end{scope}
+
+
+
 
 
 %% ------------------------------------------------------------------------- %
@@ -1456,26 +1521,37 @@
 
 % Registration Marks
 \begin{scope}[xshift=\RegMarkAXShift,yshift=\RegMarkAYShift,rotate=0]
-	\draw (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
-	\draw (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
-	\draw (0,0) circle (\RegMarkScale);
+	\draw[\RegMarkLineStyle] (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
+	\draw[\RegMarkLineStyle] (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
+	\draw[\RegMarkLineStyle] (0,0) circle (\RegMarkScale);
 \end{scope}
 \begin{scope}[xshift=\RegMarkBXShift,yshift=\RegMarkBYShift,rotate=0]
-	\draw (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
-	\draw (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
-	\draw (0,0) circle (\RegMarkScale);
+	\draw[\RegMarkLineStyle] (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
+	\draw[\RegMarkLineStyle] (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
+	\draw[\RegMarkLineStyle] (0,0) circle (\RegMarkScale);
 \end{scope}
 % Corner Alignment Marks
 \begin{scope}[xshift=\RegMarkUpperLeftXShift,yshift=\RegMarkUpperLeftYShift,rotate=0]
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (\RegMarkCornerLength,0); 
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (0,-\RegMarkCornerLength);
-	\draw[dashed] (-\RegMarkCornerMargin,-\RegMarkCornerLength) -- (\RegMarkCornerLength,\RegMarkCornerMargin);
+	\draw[\RegMarkDiagonalLineStyle] (-\RegMarkCornerMargin,-\RegMarkCornerLength) -- (\RegMarkCornerLength,\RegMarkCornerMargin);
 \end{scope}
 \begin{scope}[xshift=\RegMarkLowerRightXShift,yshift=\RegMarkLowerRightYShift,rotate=0]
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (-\RegMarkCornerLength,0); 
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (0,\RegMarkCornerLength);
-	\draw[dashed] (\RegMarkCornerMargin,\RegMarkCornerLength) -- (-\RegMarkCornerLength,-\RegMarkCornerMargin);
+	\draw[\RegMarkDiagonalLineStyle] (\RegMarkCornerMargin,\RegMarkCornerLength) -- (-\RegMarkCornerLength,-\RegMarkCornerMargin);
 \end{scope}
+
+%\begin{scope}[xshift=\RegMarkLowerLeftXShift,yshift=\RegMarkLowerLeftYShift,rotate=0]
+%	%\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (\RegMarkCornerLength,0); 
+%	%\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (0,\RegMarkCornerLength);
+%	\draw[\RegMarkDiagonalLineStyle] (-\RegMarkCornerMargin,\RegMarkCornerLength) -- (\RegMarkCornerLength,-\RegMarkCornerMargin);
+%\end{scope}
+%\begin{scope}[xshift=\RegMarkLowerRightXShift,yshift=\RegMarkLowerRightYShift,rotate=0]
+%	%\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (-\RegMarkCornerLength,0); 
+%	%\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (0,-\RegMarkCornerLength);
+%	\draw[\RegMarkDiagonalLineStyle] (-\RegMarkCornerMargin,-\RegMarkCornerLength) -- (\RegMarkCornerLength,\RegMarkCornerMargin);
+%\end{scope}
 
 
 
@@ -1522,7 +1598,7 @@
 \else
 
 \newpage
-\begin{tikzpicture}
+\begin{tikzpicture}[overlay,remember picture]
 
 
 
@@ -2163,25 +2239,25 @@
 
 % Registration Marks
 \begin{scope}[xshift=\RegMarkAXShift,yshift=\RegMarkAYShift,rotate=0]
-	\draw (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
-	\draw (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
-	\draw (0,0) circle (\RegMarkScale);
+	\draw[\RegMarkLineStyle] (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
+	\draw[\RegMarkLineStyle] (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
+	\draw[\RegMarkLineStyle] (0,0) circle (\RegMarkScale);
 \end{scope}
 \begin{scope}[xshift=\RegMarkBXShift,yshift=\RegMarkBYShift,rotate=0]
-	\draw (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
-	\draw (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
-	\draw (0,0) circle (\RegMarkScale);
+	\draw[\RegMarkLineStyle] (-2*\RegMarkScale,0) -- (2*\RegMarkScale,0);
+	\draw[\RegMarkLineStyle] (0,-2*\RegMarkScale) -- (0,2*\RegMarkScale);
+	\draw[\RegMarkLineStyle] (0,0) circle (\RegMarkScale);
 \end{scope}
 % Corner Alignment Marks
 \begin{scope}[xshift=\RegMarkUpperLeftXShift,yshift=\RegMarkUpperLeftYShift,rotate=0]
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (\RegMarkCornerLength,0); 
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (0,-\RegMarkCornerLength);
-	\draw[dashed] (-\RegMarkCornerMargin,-\RegMarkCornerLength) -- (\RegMarkCornerLength,\RegMarkCornerMargin);
+	\draw[\RegMarkDiagonalLineStyle] (-\RegMarkCornerMargin,-\RegMarkCornerLength) -- (\RegMarkCornerLength,\RegMarkCornerMargin);
 \end{scope}
 \begin{scope}[xshift=\RegMarkLowerRightXShift,yshift=\RegMarkLowerRightYShift,rotate=0]
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (-\RegMarkCornerLength,0); 
 	\draw[line width=\RegMarkCornerLineWidth] (0,0) -- (0,\RegMarkCornerLength);
-	\draw[dashed] (\RegMarkCornerMargin,\RegMarkCornerLength) -- (-\RegMarkCornerLength,-\RegMarkCornerMargin);
+	\draw[\RegMarkDiagonalLineStyle] (\RegMarkCornerMargin,\RegMarkCornerLength) -- (-\RegMarkCornerLength,-\RegMarkCornerMargin);
 \end{scope}
 
 \end{scope} % mirror image
