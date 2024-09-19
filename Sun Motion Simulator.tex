@@ -134,8 +134,10 @@
 
 
 % Page Positioning
-\newcommand*{\masterXShift}{1.73cm}
-\newcommand*{\masterYShift}{-10.9cm}
+\newcommand*{\masterXShift}{0cm}
+\newcommand*{\masterYShift}{0cm}
+%\newcommand*{\masterXShift}{1.73cm}
+%\newcommand*{\masterYShift}{-10.9cm}
 
 \newcommand*{\FoldKeyXShift}{5.5cm+\masterXShift}
 \newcommand*{\FoldKeyYShift}{8cm+\masterYShift}
@@ -150,10 +152,10 @@
 \newcommand*{\RegMarkLowerRightXShift}{8cm+\masterXShift}
 \newcommand*{\RegMarkLowerRightYShift}{-15.42cm+\masterYShift}
 
-\newcommand*{\RegMarkLowerLeftXShift}{-11.5cm+\masterXShift}
-\newcommand*{\RegMarkLowerLeftYShift}{-15.42cm+\masterYShift}
-\newcommand*{\RegMarkUpperRightXShift}{10.5cm+\masterXShift}
-\newcommand*{\RegMarkUpperRightYShift}{8cm+\masterYShift}
+%\newcommand*{\RegMarkLowerLeftXShift}{-11.5cm+\masterXShift}
+%\newcommand*{\RegMarkLowerLeftYShift}{-15.42cm+\masterYShift}
+%\newcommand*{\RegMarkUpperRightXShift}{10.5cm+\masterXShift}
+%\newcommand*{\RegMarkUpperRightYShift}{8cm+\masterYShift}
 
 \newcommand*{\RegMarkAXShift}{6.5cm+\masterXShift}
 \newcommand*{\RegMarkAYShift}{-14cm+\masterYShift}
@@ -188,7 +190,7 @@
 %\newcommand*{\TimeDiskYShift}{-2cm+\masterYShift}
 %\newcommand*{\TimeDiskRotation}{0}
 
-\newcommand*{\SunCarriageXShift}{+6cm+\masterXShift}
+\newcommand*{\SunCarriageXShift}{6cm+\masterXShift}
 \newcommand*{\SunCarriageYShift}{2.625cm+\masterYShift}
 \newcommand*{\SunCarriageRotation}{0}
 
@@ -395,6 +397,21 @@
 
 %	-- ({270-asin(\SolarFrameFootLength/\SolarFrameOuterRadius)}:\SolarFrameOuterRadius+\OutlineWidth/2-\LaserCutterLineWidth/2) arc[start angle={270-asin(\SolarFrameFootLength/\SolarFrameOuterRadius)},end angle={-90+asin(\SolarFrameFootLength/\SolarFrameOuterRadius)},radius=\SolarFrameOuterRadius]
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 % ------------------------------------------------------------------------- %
 
 
@@ -403,6 +420,15 @@
 {\centering
 %\resizebox{!}{\textheight}{%
 %\resizebox{\textwidth}{!}{%
+
+
+
+
+
+
+
+
+
 
 
 
@@ -442,7 +468,7 @@
 
 
 
-\begin{tikzpicture}[overlay,remember picture]
+\begin{tikzpicture}%[overlay,remember picture]
 
 
 
@@ -992,7 +1018,7 @@
 			(\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SunCarriageInternalWidth) 
 			-- (\SunCarriageInternalWidth+\OutlineWidth/2-\LaserCutterLineWidth/2+\LaserCutFoldWidth/2,\SunCarriageInternalWidth); % lower left
 
-	\fi
+	\fi  % \ifLaserCutterMode
 \else
 	
 	
@@ -1374,7 +1400,7 @@
 	
 	% Copyright label
 	\draw[decoration={text along path,
-	      text={|\footnotesize| Copyright 2023 by Jess W. Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
+	      text={|\footnotesize| Copyright 2024 by Jess W. Vriesema of Calvin University},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
 	
 	% Solar Frame Label
 	\node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -1555,7 +1581,20 @@
 
 
 
-\end{tikzpicture}
+%% Last Update Text
+%\begin{scope}[xshift=\HelpCardXShift,yshift=\HelpCardYShift,rotate=\HelpCardRotation]
+%\node[font=\normalsize, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0,0) {
+%	Document last compiled on \date.
+%};
+%\end{scope}
+
+
+
+
+
+
+
+\end{tikzpicture}  % End of front Side
 
 
 
@@ -1569,7 +1608,29 @@
 
 
 
-
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
+% ------------------------------------------------------------------------------------------------------------------- % 
 
 
 
@@ -1598,7 +1659,7 @@
 \else
 
 \newpage
-\begin{tikzpicture}[overlay,remember picture]
+\begin{tikzpicture}%[overlay,remember picture]
 
 
 
@@ -1622,19 +1683,19 @@
 		\bigskip
 		{\small Videos including an introduction, assembly instructions and examples, \\will be available at \href{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}.} \\
 		\bigskip
-		For more information, please visit \url{https://www.lpl.arizona.edu/~vriesema/solar_motion.php}. \\
-		\bigskip
+		%For more information, please visit \url{https://www.lpl.arizona.edu/~vriesema/solar_motion.php}. \\
+		%\bigskip
 		{\small This original work is licensed under the Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. 
 		To view a copy of this license, visit
  % fake URL that does not render as any text, but eats up a bug that causes the URL AFTER the Twitter URL to also point to Twitter. 
 \url{http://creativecommons.org/licenses/by-nc-sa/4.0/}.} \\
 		\bigskip
-		\textbf{\copyright 2023 by Jess W. Vriesema \\of the University of Wisconsin--Eau Claire} \\
+		\textbf{\copyright 2024 by Jess W. Vriesema \\of Calvin University} \\
 		\bigskip
 		Feel free to contact me with questions, comments or suggestions.\\
-		Email: \href{mailto:vriesejw@uwec.edu}{vriesejw@uwec.edu} \\
-		Web page: \url{https://www.lpl.arizona.edu/~vriesema/} \\
-		Twitter: \url{https://twitter.com/Jvriesem} \\
+		Email: \href{mailto:jess.vriesema@calvin.edu}{jess.vriesema@calvin.edu} \\
+		%Web page: \url{https://www.lpl.arizona.edu/~vriesema/} \\
+		%Twitter: \url{https://twitter.com/Jvriesem} \\
 		%TODO: \\
 	};
 	\draw[line width=\HelpCardBorderWidth,color=\OutlineColor] (-\HelpCardWidth/2,-\HelpCardHeight/2) rectangle (\HelpCardWidth/2,\HelpCardHeight/2);
@@ -2096,7 +2157,7 @@
 
 % Copyright label
 \draw[decoration={text along path,
-      text={|\footnotesize| Copyright 2023 by Jess~W.~Vriesema of UWEC},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
+      text={|\footnotesize| Copyright 2024 by Jess~W.~Vriesema of Calvin University},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
 
 % Solar Frame Label
 \node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -2453,7 +2514,7 @@
 	You can simulate the position of the Sun in the sky by pivoting the Solar Arm from 0 (midnight) to 6 (6~AM) to 12 (noon) to 18 (6~PM) to 24 (midnight). The Sun slider represents the Sun. Sunrise happens when the Sun slider crosses from behind the horizon disk (usually in the eastern sky) in the morning. Sunset happens when the Sun slider crosses from above the horizon disk to below it (usually in the western sky) in the evening. Some people find it helpful to rotate the entire model such that the printed Horizon Disk faces up.
 \vfill
 \hrule 
-\noindent\copyright 2023 by \href{https://www.lpl.arizona.edu/~vriesema/}{Jess W. Vriesema} of the University of Wisconsin--Eau Claire. All rights reserved. 
+\noindent\copyright 2024 by \href{https://www.lpl.arizona.edu/~vriesema/}{Jess W. Vriesema} of Calvin University. All rights reserved. 
 	\end{multicols}
 \fi % \ifPrintInstructions
 
