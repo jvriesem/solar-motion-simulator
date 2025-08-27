@@ -214,6 +214,10 @@
 %\newcommand*{\SolarFrameFootYShift}{6cm+\masterYShift}
 %\newcommand*{\SolarFrameFootRotation}{0}
 
+\newcommand*{\LastUpdateMsgXShift}{3.5cm+\masterXShift}
+\newcommand*{\LastUpdateMsgYShift}{-14.9cm+\masterYShift}
+\newcommand*{\LastUpdateMsgRotation}{0}
+
 
 % Registration Marks (circle and crosshairs)
 \newcommand*{\RegMarkScale}{0.5cm}
@@ -1400,7 +1404,7 @@
 	
 	% Copyright label
 	\draw[decoration={text along path,
-	      text={|\footnotesize| Copyright 2024 by Jess W. Vriesema of Calvin University},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
+	      text={|\footnotesize| Copyright 2024 by Jess W. Vriesema},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
 	
 	% Solar Frame Label
 	\node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -1581,14 +1585,18 @@
 
 
 
-%% Last Update Text
-%\begin{scope}[xshift=\HelpCardXShift,yshift=\HelpCardYShift,rotate=\HelpCardRotation]
-%\node[font=\normalsize, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0,0) {
-%	Document last compiled on \date.
-%};
-%\end{scope}
+% Last Update Text
+\begin{scope}[xshift=\LastUpdateMsgXShift,yshift=\LastUpdateMsgYShift,rotate=\LastUpdateMsgRotation]
+	\ifLaserCutterMode
+		 % Do nothing
+	\else
+		\node[font=\normalsize, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0,0) {
+			Document last compiled on \today. 
+		};
+\end{scope}
 
 
+	
 
 
 
@@ -2157,7 +2165,7 @@
 
 % Copyright label
 \draw[decoration={text along path,
-      text={|\footnotesize| Copyright 2024 by Jess~W.~Vriesema of Calvin University},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
+      text={|\footnotesize| Copyright 2024 by Jess~W.~Vriesema},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
 
 % Solar Frame Label
 \node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
