@@ -1,4 +1,16 @@
+% !TEX program = pdflatexmk
 % !TEX TS-program = pdflatexmk
+% !TEX encoding = UTF-8
+% !TEX spellcheck = en_US 
+% 
+% INSTRUCTIONS:
+%    To compile this .tex file into a .pdf file, use the pdflatexmk engine in TeXWorks or TeXShop.
+% 
+% Author: Prof. Jess Vriesema, Calvin University, 2025.
+% 
+% COPYRIGHT: (C) 2025 by Jess Vriesema. All rights reserved. 
+% LICENSE: Creative Commons — Attribution-NonCommercial-ShareAlike 4.0 International — CC BY-NC-SA 4.0.
+% ---------------------------------------------- %
 \documentclass[tikz]{article}
 % Compiles in TeXShop 5.54 using pdflatexmk. 
 
@@ -15,6 +27,8 @@
 \usepackage[letterpaper,portrait,margin=0.0cm]{geometry}
 \usepackage{multicol}
 \usepackage[dvipsnames]{xcolor}
+
+\usepackage{marvosym}  % For scissors
 
 \usepackage{gensymb}  % for \degree
 
@@ -47,6 +61,12 @@
 }
 
 
+% License info
+\usepackage[
+type={CC},
+modifier={by-nc-sa},
+version={4.0},
+]{doclicense}
 
 
 
@@ -61,7 +81,7 @@
 
 \newif\ifPrintInstructions  % if true, print page of instructions
 \PrintInstructionsfalse  % set \PrintInstructions to false
-
+ 
 \newif\ifLaserCutterMode  % if true, color laser-cutter lines a special color
 %\LaserCutterModetrue  % set \LaserCutterMode to true
 \LaserCutterModefalse  % set \LaserCutterMode to false
@@ -126,6 +146,12 @@
 %\tikzset{LaserCutterMostlyCut/.style=          {dash pattern=on 10pt off 1 pt}}%
 \tikzset{LaserCutterOutlineCut/.style=          {dash pattern=on 20pt off 1 pt}}%
 \tikzset{LaserCutterCut/.style=          {dash pattern=}}%
+
+% Scissor Settings
+\newcommand*{\ScissorScale}{1.0}
+\newcommand*{\ScissorOffsetFromEdge}{0.3cm}
+\newcommand*{\ScissorOffsetFromLine}{0.025cm}
+
 
 
 
@@ -379,6 +405,14 @@
 \newcommand*{\HorizonDiskIncisionWidth}{\IncisionWidth}
 \newcommand*{\HorizonDiskSolarFrameLineWidth}{\OutlineWidth}
 \newcommand*{\HorizonDiskTapeMeScale}{0.8}
+\newcommand*{\HorizonDiskCopyrightScale}{0.8}
+\newcommand*{\HorizonDiskCopyrightX}{0.45*\HorizonDiskRadius}
+\newcommand*{\HorizonDiskCopyrightY}{-0.35*\HorizonDiskRadius}
+\newcommand*{\HorizonDiskLicenseX}{0.2*\HorizonDiskRadius}
+\newcommand*{\HorizonDiskLicenseY}{-0.3*\HorizonDiskRadius}
+\newcommand*{\HorizonDiskLatLabelScale}{1.0}
+\newcommand*{\HorizonDiskLatLabelRadius}{0.5*\HorizonDiskRadius}
+\newcommand*{\HorizonDiskLatLabelOffset}{0.3cm}
 
 % Horizon Frame Teeth
 \newcommand*{\HorizonDiskTeeth}{3} % How many teeth on each side (IGNORED if \UseHDTeeth is unset)
@@ -588,14 +622,14 @@
 			Pivot the Observer's Horizon so that its southern edge points to the desired latitude on the ``Observer's Latitude'' track. \\
 			\medskip
 			\textbf{Adjusting the Time of Year} \\
-			Move the Sun Slider to the appropriate declination marked on the Solar Arm. The solar declination is approximately +23.5{\degree} on/near June~20/21, -23.5{\degree} on/near December~21, and 0{\degree} at either equinox (March~19/20 or September~22/23). \\
+			Move the window labelled ``Sun'' to the appropriate Solar Declination as marked on the Solar Arm. The solar declination is approximately +23.5{\degree} on/near June~20/21, -23.5{\degree} on/near December~21, and 0{\degree} at either equinox (March~19/20 or September~22/23). \\
 			\medskip
 			\textbf{Adjusting the Time of Day} \\
 			Swivel the Solar Arm such that the ``Time of day $\downarrow$'' indicator at its base points to the desired time on the Time Dial. \\
 	%		The Solar Arm's position indicates the rotation of the Earth and the time of day. The Solar Arm has an indicator at the bottom which points to the time of day on the Time Dial. \\
 			\medskip
 			\textbf{Simulating the Sun's Daily Motion} \\
-			The Sun Slider represents the Sun. You can simulate the position of the Sun over the course of a day by pivoting the Solar Arm from 0 (midnight) to 6 (6~AM) to 12 (noon) to 18 (6~PM) to 24 (midnight). Sunrise happens when the Sun Slider crosses from behind the Horizon Disk (usually in the eastern sky) in the morning. Sunset happens when the Sun Slider crosses from above the Horizon Disk to below it (usually in the western sky) in the evening. Some people find it helpful to rotate the entire model such that the printed Horizon Disk faces up.
+			The Sun Slider represents the Sun. You can simulate the position of the Sun over the course of a day by pivoting the Solar Arm from 0 (midnight) to 6 (6~AM) to 12 (noon) to 18 (6~PM) to 24 (midnight). Sunrise happens when the Sun Slider crosses from behind the Horizon Disk (usually in the eastern sky) in the morning. Sunset happens when the Sun Slider crosses from above the Horizon Disk to below it (usually in the western sky) in the evening. Some people find it helpful to rotate the entire model but keep the printed Observer's Horizon fixed and facing upward.
 		};
 		% Draw outline
 		\draw[line width=\HelpCardBorderWidth,color=\OutlineColor] (-\HelpCardWidth/2,-\HelpCardHeight/2) rectangle (\HelpCardWidth/2,\HelpCardHeight/2);
@@ -718,15 +752,26 @@
 	% Cardinal ticks with labels every 90 degrees
 	\foreach \x in {0,90,180,270}
 		\draw[line width=\HorizonDiskNinetyDegTickWidth] (\x:\HorizonDiskRadius-\HorizonDiskNinetyDegTickSize) -- (\x:\HorizonDiskRadius);
-	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (90:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {N};
-	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (0:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {E};
-	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (-90:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {S};
-	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (180:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {W};
+		
+		
 	% Horizon Disk Label
 	\node[scale=\HorizonDiskLabelScale] at (0,\HorizonDiskLabelRadius) {Observer's Horizon};
 	% Incision
 	\draw[color=\IncisionColor,line width=\HorizonDiskIncisionWidth] (0,0) -- (0,-\HorizonDiskRadius);
+%	% Scissor symbol for Horizon Disk incision — NO: Do it on the reverse side for aesthetics
+%	\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\HorizonDiskRadius+\ScissorOffsetFromEdge) {\RightScissors};
+
+	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (90:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {N};
+	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (0:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {E};
+	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (-90:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {S};
+	\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (180:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {W};
+	
+	% Draw the latitude labels
+	\node[scale=\HorizonDiskLatLabelScale,font=\normalsize,rotate=90] at (\HorizonDiskLatLabelOffset,-\HorizonDiskLatLabelRadius) {$\uparrow$ Observer's Latitude};
+	\node[scale=\HorizonDiskLatLabelScale,font=\normalsize,rotate=-90] at (-\HorizonDiskLatLabelOffset,-\HorizonDiskLatLabelRadius) {Observer's Latitude $\uparrow$};
+	%\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=90] at (\SolarFrameCenterSupportFlapWidth/2,\SolarFrameCenterSupportFlapLength/2) {Attach here};
 \fi % \ifLaserCutterMode
+
 
 
 % HELPER LINES
@@ -1167,36 +1212,54 @@
 
 
 	% Inner Solar Frame laser cutout
+	
+	% Start near 180º and arc to near 90º
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		({180-asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius)}:\SolarFrameInnerRadius-\OutlineWidth/2+\LaserCutterLineWidth/2)
 			arc[start angle=180-asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius),end angle=90+asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius),radius=\SolarFrameInnerRadius-\OutlineWidth/2+\LaserCutterLineWidth/2];
-			
+	% Arc from near 90º to near 0º
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		({90-asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius)}:\SolarFrameInnerRadius-\OutlineWidth/2+\LaserCutterLineWidth/2)
 			arc[start angle=90-asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius),end angle=asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius),radius=\SolarFrameInnerRadius-\OutlineWidth/2+\LaserCutterLineWidth/2];
-			
+	
+	% Arc from near 0º to near 270º plus the latitude scale arc plus the horizon disk incision plus part of the support flaps 
+	% TODO: Split this into two cuts? Add a tie somewhere? (The "tie" is the part where the cut stops temporarily to hold the cutout in place.)
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		({-asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius)}:\SolarFrameInnerRadius-\OutlineWidth/2+\LaserCutterLineWidth/2)
 			arc[start angle=-asin(\LaserCutterHalfTieWidth/\SolarFrameInnerRadius-\LaserCutterLineWidth/2/\SolarFrameInnerRadius),end angle=-90+asin(\laserCutterSolarFrameInnerSineAngle),radius=\SolarFrameInnerRadius-\OutlineWidth/2+\LaserCutterLineWidth/2]
+		% Up from near 270º to latitude scale arc
 		-- (\OutlineWidth/2-\LaserCutterLineWidth/2,-\SolarFrameCenterLatitudeArcRadius-\OutlineWidth/2+\LaserCutterLineWidth/2)
-			arc[start angle=-90+asin(\laserCutterSolarFrameLatSineAngle),end angle=-asin(\laserCutterSolarFrameLatSineAngle),radius=\SolarFrameCenterLatitudeArcRadius+\OutlineWidth/2-\LaserCutterLineWidth/2]
+		% Latitude scale arc from near 270º to near 0º
+		arc[start angle=-90+asin(\laserCutterSolarFrameLatSineAngle),end angle=-asin(\laserCutterSolarFrameLatSineAngle),radius=\SolarFrameCenterLatitudeArcRadius+\OutlineWidth/2-\LaserCutterLineWidth/2]
+		% Horizon disk incision (lower part, leftward cut)
 		-- (-\OutlineWidth/2+\LaserCutterLineWidth/2,-\OutlineWidth/2+\LaserCutterLineWidth/2)
+		% Horizon disk incision (upward cut at origin from lower to upper part of the incision)
 		-- (-\OutlineWidth/2+\LaserCutterLineWidth/2,\OutlineWidth/2-\LaserCutterLineWidth/2)
+		% Horizon disk incision (upper part, rightward cut out to support flap edge)
 		-- (\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2,\OutlineWidth/2-\LaserCutterLineWidth/2)
-		-- (\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2,\OutlineWidth/2-\LaserCutterLineWidth/2)
+		% Far-right upward cut for support flap
 		-- (\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth);
 	
+	% Mirrored cut for central support flaps
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		(\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
+		% Leftward cut on right side
 		-- (\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
-		-- (\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth)
-		-- (-\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth)
+		% Upward cut on right side
+		-- (\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2)
+		% Leftward cut across the vertical axis (uppermost part of support flaps)
+		-- (-\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2)
+		% Downward cut on left side
 		-- (-\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
+		% Leftward cut on left side
 		-- (-\SolarFrameCenterSupportFlapLength-\OutlineWidth/2+\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2);
-		
+	
+	% Go from support flap back to the leftmost corner (near 180º) of the inner solar frame cut
 	\draw[style=LaserCutterCut,color=\LaserCutterColor, line width=\LaserCutterLineWidth] 
 		(-\SolarFrameCenterSupportFlapLength-\OutlineWidth/2+\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2-\LaserCutterHalfTieWidth) 
+		% Downward cut on left side back near the y=0 line
 		-- (-\SolarFrameCenterSupportFlapLength-\OutlineWidth/2+\LaserCutterLineWidth/2,-\OutlineWidth/2+\LaserCutterLineWidth/2)
+		% Go back to home
 		-- (-\SolarFrameInnerRadius+\LaserCutterHalfTieWidth,-\OutlineWidth/2+\LaserCutterLineWidth/2);
 						
 		
@@ -1277,11 +1340,20 @@
 	% Incision for the Time Disk
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 		(0,-\SolarFrameOuterRadius) -- (\SolarFrameFootLength,-\SolarFrameOuterRadius);
+	% Scissor symbol for Time Disk
+	\node[scale=\ScissorScale,font=\LARGE,rotate=180] at (\SolarFrameFootLength-\ScissorOffsetFromEdge,-\SolarFrameOuterRadius-\ScissorOffsetFromLine) {\CutLeft};
+		
 	% Incision for the Foot Support
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 		(0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2) -- (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight-\SolarFrameExtraFootHeight);
+	% Scissor symbol for Time Disk
+	\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight-\SolarFrameExtraFootHeight+\ScissorOffsetFromEdge) {\RightScissors};
+	%\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\SolarFrameExtraFootHeight+\ScissorOffsetFromEdge) {\RightScissors};
+	
 	% Incision for horizon support flap
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth] (0,0) -- (\SolarFrameCenterSupportFlapLength,0);
+	% Scissor symbol for Horizon Disk incision on Solar Frame
+	\node[scale=\ScissorScale,font=\LARGE,rotate=0] at (\SolarFrameCenterSupportFlapLength-\ScissorOffsetFromEdge,\ScissorOffsetFromLine) {\CutRight};
 	
 	% Markings for Solar Declination
 	% Minor declination markers (unlabelled)
@@ -1316,9 +1388,14 @@
 	% Solar declination label
 	\draw[decoration={text along path,
 	      text={|\large|Solar Declination},text align={center},text color=black,raise=0.0cm},decorate] (90:\SolarFrameDeclinationLabelRadius) arc[start angle=90,end angle=-90,radius=\SolarFrameDeclinationLabelRadius];
-	      
+	
+	% Solar Arm label
 	\draw[decoration={text along path,
 	      text={|\Large|Solar Arm},text align={center},text color=black,raise=0.0cm},decorate] (90:0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius) arc[start angle=90,end angle=\axialTilt,radius=0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius];
+	      
+%	% Solar Frame label
+%	\draw[decoration={text along path,
+%	      text={|\Large|Solar Frame},text align={center},text color=black,raise=0.0cm},decorate] (180:0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius) arc[start angle=180,end angle=90,radius=0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius];
 	      
 	
 	\draw[decoration={text along path,
@@ -1406,9 +1483,13 @@
 	\draw[decoration={text along path,
 	      text={|\large|Observer's Latitude},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameLatitudeLabelRadius) arc[start angle=180,end angle=270,radius=\SolarFrameLatitudeLabelRadius];
 	
-	% Copyright label
+%	% Copyright label
+%	\draw[decoration={text along path,
+%	      text={|\footnotesize| Copyright 2025 by Jess W. Vriesema},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
+	      
+	% Solar Frame label
 	\draw[decoration={text along path,
-	      text={|\footnotesize| Copyright 2025 by Jess W. Vriesema},text align={center},text color=black,raise=0.0cm},decorate] (180:\SolarFrameCopyrightLabelRadius) arc[start angle=180,end angle=250,radius=\SolarFrameCopyrightLabelRadius];
+	      text={|\Large|Solar Frame},text align={center},text color=black,raise=0.0cm},decorate] (150:0.6*\SolarFrameOuterRadius+0.4*\SolarFrameInnerRadius) arc[start angle=150,end angle=210,radius=0.6*\SolarFrameOuterRadius+0.4*\SolarFrameInnerRadius];
 	
 	% Solar Frame Label
 	\node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -1519,14 +1600,22 @@
 	% Draw the Footer rectangle
 	\draw[color=\OutlineColor,fill=\FillColor, line width=\OutlineWidth] 
 		(-\SolarFrameFootLength,-\SolarFrameExtraFootHeight) rectangle (\SolarFrameFootLength,\SolarFrameFootHeight);
+		
 	% Incision for the Foot Support
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 		(0,\SolarFrameFootHeight) -- (0,\SolarFrameFootHeight/2);
+	% Scissor symbol for Foot Support
+	\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,\SolarFrameFootHeight-\ScissorOffsetFromEdge) {\LeftScissors};
+		
 	% Incision for the Foot Support's extra height (to be folded as a base)
 	\draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 		(0,0) -- (0,-\SolarFrameExtraFootHeight);
+	% Scissor symbol for Foot Support
+	\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\SolarFrameExtraFootHeight+\ScissorOffsetFromEdge) {\RightScissors};
+		
 	\draw[\valleyFold,line width=1pt] (0,-0) -- (\SolarFrameFootLength,0);
 	\draw[\mountainFold,line width=1pt] (-\SolarFrameFootLength,-0) -- (0,0);
+	
 	% Label
 	\node[scale=\FooterSupportLabelScale,font=\normalsize] at (0,\SolarFrameFootHeight/2-\FooterSupportLabelOffset) {Base Support};
 	
@@ -1695,7 +1784,7 @@
 		\centering
 		%Illustrated assembly instructions are available at \url{https://www.lpl.arizona.edu/~vriesema/solar_motion_instructions.php}. \\
 		%\bigskip
-		{\small \textbf{Assembly Instructions:} \textbf{(1)} Cut out the grey pieces and remove any interior white regions and cut along the blue lines. \textbf{(2)} From the back, fold the two L-shaped supports of the inner Solar Frame down, then fold the left L to the right so that ``Attach here'' is visible. \textbf{(3)} Align the Horizon disk's ``Attach here'' label with that of the support so that the labels are facing each other and the Horizon disk's slit points towards the Solar Declination scale. \textbf{(4)} Tape the Horizon disk to the support such that the labels are hidden. \textbf{(5)} Insert the Horizon Disk’s slit into the latitude scale so the disk can tilt along it. \textbf{(6)} Fold the ``feet'' of the Base Support and Solar Frame (left foot away, right foot towards you), then insert the pieces into each other at a 90{\degree} angle such that corner letters match. \textbf{(7)} Fold the feet flat and tape them together to form a square base. \textbf{(8)} Insert the Time Dial into the Time of Day slot. \textbf{(9)} Fold the ``Sun'' box in half with the labels facing outward and \emph{carefully} fold the inner flaps inward. Friction from the inner flaps should prevent the Sun from sliding unless you move it yourself. \textbf{(10)} Position the Sun on the Solar Arm with ``Sun'' on the outside of the Solar Arm. Tape the Sun box halves together so it can slide along the Solar Arm. \textbf{(12)} Crease the Solar Arm along its polar axis so it can swivel.} \\
+		{\small \textbf{Assembly Instructions:} \textbf{(1)} Cut out the grey pieces and remove any interior white regions. \textbf{(2)} Make incisions along the thick lines indicated by scissors. \textbf{(2)} From the back, fold the two L-shaped supports of the inner Solar Frame down, then fold the left L to the right so that ``Attach here'' is visible. \textbf{(3)} Position the underside of the Observer's Horizon disc such that its ``Attach here'' label aligns with that of the support so that the labels are facing each other and the slit on the Observer's Horizon disc points towards the Solar Declination scale. \textbf{(4)} Tape the Observer's Horizon discto the support such that the labels are hidden. \textbf{(5)} Insert the Observer's Horizon slit into the latitude scale so the disk can tilt along it. \textbf{(6)} Fold the ``feet'' of the Base Support and Solar Frame (left foot away, right foot towards you), then insert the pieces into each other at a 90{\degree} angle such that corner letters match. \textbf{(7)} Fold the feet flat and tape them together to form a square base. \textbf{(8)} Insert the Time Dial into the Time of Day slot. \textbf{(9)} Fold the ``Sun'' box in half with the labels facing outward and \emph{carefully} fold the inner flaps inward. Friction from the inner flaps should prevent the Sun from sliding unless you move it yourself. \textbf{(10)} Position the Sun on the Solar Arm with ``Sun'' on the outside of the Solar Arm. Tape the Sun box halves together so it can slide along the Solar Arm. \textbf{(12)} Crease the Solar Arm along its polar axis so it can swivel.} \\
 		%\medskip
 		%{\small Videos %, including an introduction, an assembly tutorial and examples, \\
 		%will soon be available in the following YouTube playlist: \href{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}.} \\
@@ -1723,6 +1812,11 @@
 	\fi % \ifLaserCutterMode
 	
 \end{scope}
+
+
+
+
+
 
 
 % ------------------------------------------------------------------------- %
@@ -1758,8 +1852,11 @@
 %\node[scale=\HorizonDiskNinetyDegLabelScale,font=\normalsize] at (180:\HorizonDiskRadius-\HorizonDiskThirtyDegTickSize-2*\HorizonDiskNinetyDegLabelOffset) {W};
 % Horizon Disk Label
 %\node[scale=\HorizonDiskLabelScale] at (0,\HorizonDiskLabelRadius) {(backside)};
+
 % Incision
 \draw[color=\IncisionColor,line width=\HorizonDiskIncisionWidth] (0,0) -- (0,-\HorizonDiskRadius);
+% Scissor symbol for Horizon Disk incision — NO: Do it on the reverse side for aesthetics
+\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\HorizonDiskRadius+\ScissorOffsetFromEdge) {\RightScissors};
 
 % Draw Solar Frame outline for attaching parts:
 \draw[line width=\HorizonDiskSolarFrameLineWidth]
@@ -1775,7 +1872,13 @@
 %	-- (\SolarFrameCenterSupportFlapWidth,-\SolarFrameCenterSupportFlapLength)
 %	-- (0,-\SolarFrameCenterSupportFlapLength)
 %	-- (0,-\HorizonDiskRadius);
+% "Attach Here" annotation on the bottom of the Horizon Disk
 \node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=90] at (\SolarFrameCenterSupportFlapWidth/2,\SolarFrameCenterSupportFlapLength/2) {Attach here};
+%% Version number
+%\node[scale=\HorizonDiskTapeMeScale,font=\normalsize, align=center] at (-\SolarFrameCenterSupportFlapWidth/2,-\SolarFrameCenterSupportFlapLength/2) {Solar Motion Simulator \\ Version 1.5};
+% Copyright Info
+\node[scale=\HorizonDiskTapeMeScale,font=\normalsize, align=right,rotate=90] at (\HorizonDiskCopyrightX,\HorizonDiskCopyrightY) {Copyright 2025 by \\ Jess W. Vriesema. \\ All rights reserved.};
+\node[scale=\HorizonDiskTapeMeScale,font=\normalsize, align=center, rotate=90] at (\HorizonDiskLicenseX,\HorizonDiskLicenseY) {\doclicenseImage[imagewidth=2.5cm] };  % Clickable URL! 
 
 %\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=0] at (-1.3*\SolarFrameCenterSupportFlapWidth,0) {\includegraphics[width=2.5cm]{qr_code_simple.png}};
 %\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=90] at (-\SolarFrameCenterSupportFlapWidth/3,0) {\bfseries{Scan for more info:}};
@@ -1803,6 +1906,11 @@
 \fi
 
 \end{scope}
+
+
+
+
+
 
 
 
@@ -1842,6 +1950,8 @@
 
 % Incision
 \draw[color=\IncisionColor,line width=\TimeDiskIncisionWidth] (90-180:\TimeDiskIncisionExtraSize) -- (90-0:\TimeDiskRadius);
+% Scissor symbol for Time Dial's underside
+\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (90:\TimeDiskRadius-\ScissorOffsetFromEdge) {\LeftScissors};
 
 % Helper lines (to assist with footer construction alignment when taping)
 \draw[line width=\TimeDiskUndersideAlignmentLineWidth] 
@@ -2021,11 +2131,21 @@
 % Incision for the Time Disk
 \draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 	(0,-\SolarFrameOuterRadius) -- (\SolarFrameFootLength,-\SolarFrameOuterRadius);
+% Scissor symbol for Time Disk
+\node[scale=\ScissorScale,font=\LARGE,rotate=180] at (\SolarFrameFootLength-\ScissorOffsetFromEdge,-\SolarFrameOuterRadius-\ScissorOffsetFromLine) {\CutRight};
+
 % Incision for the Foot Support
 \draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 	(0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2) -- (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight-\SolarFrameExtraFootHeight);
+% Scissor symbol for Foot Support
+\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight-\SolarFrameExtraFootHeight+\ScissorOffsetFromEdge) {\RightScissors};
+	
 % Incision for horizon support flap
 \draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth] (0,0) -- (\SolarFrameCenterSupportFlapLength,0);
+% Scissor symbol for Horizon Disk incision on Solar Frame
+\node[scale=\ScissorScale,font=\LARGE,rotate=0] at (\SolarFrameCenterSupportFlapLength-\ScissorOffsetFromEdge,\ScissorOffsetFromLine) {\CutLeft};
+
+
 % Attach here label
 \node[scale=\HorizonDiskTapeMeScale,font=\normalsize] at (\SolarFrameCenterSupportFlapLength/2,\SolarFrameCenterSupportFlapWidth/2) {Attach here};
 
@@ -2079,9 +2199,14 @@
 % Solar declination label
 \draw[decoration={text along path,
       text={|\large|Solar Declination},text align={center},text color=black,raise=0.0cm},decorate] (-90:\SolarFrameDeclinationLabelRadius) arc[start angle=-90,end angle=90,radius=\SolarFrameDeclinationLabelRadius];
-      
-\draw[decoration={text along path,
-      text={|\Large|Solar Arm},text align={center},text color=black,raise=0.0cm},decorate] (\axialTilt:0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius) arc[start angle=\axialTilt,end angle=90,radius=0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius];
+
+%% Solar Arm label
+%\draw[decoration={text along path,
+%      text={|\Large|Solar Arm},text align={center},text color=black,raise=0.0cm},decorate] (\axialTilt:0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius) arc[start angle=\axialTilt,end angle=90,radius=0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius];
+
+%% Solar Frame label
+%\draw[decoration={text along path,
+%      text={|\Large|Solar Frame},text align={center},text color=black,raise=0.0cm},decorate] (90:0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius) arc[start angle=90,end angle=180,radius=0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius];
       
 %      \draw[decoration={text along path,
 %	      text={|\large|Solar Arm},text align={center},text color=black,raise=0.0cm},decorate] (90:0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius) arc[start angle=90,end angle=\axialTilt,radius=0.4*\SolarFrameOuterRadius+0.6*\SolarFrameInnerRadius];
@@ -2173,9 +2298,13 @@
 \draw[decoration={text along path,
       text={|\large|Observer's Latitude},text align={center},text color=black,raise=0.0cm},decorate] (270:\SolarFrameLatitudeLabelRadius) arc[start angle=270,end angle=180,radius=\SolarFrameLatitudeLabelRadius];
 
-% Copyright label
-\draw[decoration={text along path,
-      text={|\footnotesize| Copyright 2025 by Jess~W.~Vriesema},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
+%% Copyright label
+%\draw[decoration={text along path,
+%      text={|\footnotesize| Copyright 2025 by Jess~W.~Vriesema},text align={center},text color=black,raise=0.0cm},decorate] (250:\SolarFrameCopyrightLabelRadius) arc[start angle=250,end angle=180,radius=\SolarFrameCopyrightLabelRadius];
+	      
+	% Solar Frame label
+	\draw[decoration={text along path,
+	      text={|\Large|Solar Frame},text align={center},text color=black,raise=0.0cm},decorate] (210:0.6*\SolarFrameOuterRadius+0.4*\SolarFrameInnerRadius) arc[start angle=210,end angle=150,radius=0.6*\SolarFrameOuterRadius+0.4*\SolarFrameInnerRadius];
 
 % Solar Frame Label
 \node[scale=\SolarFrameLabelScale,font=\normalsize] at (0,-\SolarFrameOuterRadius-\SolarFrameFootHeight/2+\SolarFrameLabelOffset) {Solar Frame};
@@ -2264,12 +2393,20 @@
 % Draw the Footer rectangle
 \draw[color=\OutlineColor,fill=\FillColor, line width=\OutlineWidth] 
 	(-\SolarFrameFootLength,-\SolarFrameExtraFootHeight) rectangle (\SolarFrameFootLength,\SolarFrameFootHeight);
+	
 % Incision for the Foot Support
 \draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 	(0,\SolarFrameFootHeight) -- (0,\SolarFrameFootHeight/2);
+% Scissor symbol for Foot Support
+\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,\SolarFrameFootHeight-\ScissorOffsetFromEdge) {\LeftScissors};
+	
+	
 % Incision for the Foot Support's extra height (to be folded as a base)
 \draw[color=\IncisionColor,line width=\SolarFrameTimeDiskIncisionWidth]
 	(0,0) -- (0,-\SolarFrameExtraFootHeight);
+% Scissor symbol for Foot Support's extra height incision
+\node[scale=\ScissorScale,font=\LARGE,rotate=-90] at (0,-\SolarFrameExtraFootHeight+\ScissorOffsetFromEdge) {\RightScissors};
+	
 \draw[\mountainFold,line width=1pt] (0,-0) -- (\SolarFrameFootLength,0);
 \draw[\valleyFold,line width=1pt] (-\SolarFrameFootLength,-0) -- (0,0);
 % Label
@@ -2484,7 +2621,7 @@
 	
 	% ------------------------------------------------------------------------- %
 	\section{Incisions}
-	Make an incision along the thick lines on the Observer's Horizon and Time Dial. For the Horizon Disk, this is from the center to due south. For the Time Dial, this is from the center to the zero or 24-hour position. Next, make three incisions on the Solar Frame along the three thick, dark lines: one from the bottom (near its feet), one below ``Time of day $\downarrow$'', and the other above the $80^\circ$N latitude line. Finally, make the two indicated incisions on the Base Support. If printed on cardstock, make the cuts \emph{slightly} wider to accommodate the thickness of the paper. %(Do not make the cuts too wide at first: they can be widened later.)
+	Make an incision along the thick, solid lines indicated by the scissors on the Observer's Horizon, the Solar Frame, the Base Support and the Time Dial. For the Horizon Disk, this is from the center to due south. For the Time Dial, this is from the center to the zero or 24-hour position. If printed on cardstock, make the cuts \emph{slightly} wider to accommodate the thickness of the paper. %(Do not make the cuts too wide at first: they can be widened later.)
 	
 	
 	% ------------------------------------------------------------------------- %
@@ -2553,9 +2690,12 @@
 	\section*{To Do List}
 	The following are things that should be done when I have time. Chores. 
 	\begin{itemize}
-		\item Add dates to Solar Arm? (Maybe at bottom?) Make switch for this so educators can decide how many clues to give students.
-		\item Add compass markings for solar declination beyond the Sun's extent, but highlight the real ones?
-		\item Add ``Observer's Latitude'' indicator arrow on the Horizon Disk, as with the Time Disk and Solar Arm. 
+		\item Add a version number to the model somewhere so people can refer to it accurately when giving me feedback. 
+		\item Organize this to-do list into sections?
+		\item Split file into SMS (two-side), laser cut stencil, and instruction documents?
+		\item Develop tools to overlay stencil on top of PDF? 
+		\item Add a comment line for documentation above every draw command (--/arc/circle/rectangle/etc.) for all segments and for each macro?
+		\item Add date ranges to the declination scale? (Maybe at bottom?) Make a switch for this so educators can decide how many clues to give students.
 		\item Make a version with AM/PM times instead of 24-hour time. Adjust instructions accordingly. 
 		\item Make a switch to use the Solar Carriage flaps (else just a box)
 		\item Revise the instruction card and instructions to use less jingo. 
