@@ -173,9 +173,9 @@ version={4.0},
 \newcommand*{\FoldKeyYShift}{8cm+\masterYShift}
 \newcommand*{\FoldKeyRotation}{0}
 
-%\newcommand*{\QRXShift}{6cm+\masterXShift}
-%\newcommand*{\QRYShift}{8cm+\masterYShift}
-%\newcommand*{\QRRotation}{0}
+\newcommand*{\QRXShift}{6cm+\masterXShift}
+\newcommand*{\QRYShift}{8cm+\masterYShift}
+\newcommand*{\QRRotation}{0}
 
 \newcommand*{\RegMarkUpperLeftXShift}{-11.5cm+\masterXShift}
 \newcommand*{\RegMarkUpperLeftYShift}{10.5cm+\masterYShift}
@@ -247,6 +247,10 @@ version={4.0},
 \newcommand*{\LastUpdateMsgXShift}{3.5cm+\masterXShift}
 \newcommand*{\LastUpdateMsgYShift}{-14.9cm+\masterYShift}
 \newcommand*{\LastUpdateMsgRotation}{0}
+
+\newcommand*{\CreditsMsgXShift}{-3.2cm+\masterXShift}
+\newcommand*{\CreditsMsgYShift}{8.5cm+\masterYShift}
+\newcommand*{\CreditsMsgRotation}{0}
 
 
 % Registration Marks (circle and crosshairs)
@@ -530,13 +534,13 @@ version={4.0},
 
 
 
-%% ------------------------------------------------------------------------- %
-%% Draw the QR CODE
-%% ------------------------------------------------------------------------- %
+% ------------------------------------------------------------------------- %
+% Draw the QR CODE
+% ------------------------------------------------------------------------- %
 %
 %\begin{scope}[xshift=\QRXShift,yshift=\QRYShift,rotate=\QRRotation]
 %
-%	\node at (0,0) {\includegraphics[width=2.5cm]{qr_to_website.png}};
+%	\node at (0,0) {\includegraphics[width=2.5cm]{QR codes/qr_to_GitHub.pdf}};
 %
 %\end{scope}
 
@@ -1248,9 +1252,9 @@ version={4.0},
 		% Upward cut on right side
 		-- (\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2)
 		% Leftward cut across the vertical axis (uppermost part of support flaps)
-		-- (-\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2)
+		-- (-\SolarFrameCenterSupportFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapLength+\OutlineWidth/2-\LaserCutterLineWidth/2)
 		% Downward cut on left side
-		-- (-\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
+		-- (-\SolarFrameCenterSupportFlapWidth-\OutlineWidth/2+\LaserCutterLineWidth/2,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2)
 		% Leftward cut on left side
 		-- (-\SolarFrameCenterSupportFlapLength-\OutlineWidth/2+\LaserCutterLineWidth/2+\LaserCutterHalfTieWidth,\SolarFrameCenterSupportFlapWidth+\OutlineWidth/2-\LaserCutterLineWidth/2);
 	
@@ -1752,10 +1756,7 @@ version={4.0},
 
 
 
-
-
-
-
+% The Back Side
 
 \ifLaserCutterMode
 
@@ -1777,6 +1778,27 @@ version={4.0},
 %\end{scope}
 
 
+
+% Credits
+\begin{scope}[xshift=\CreditsMsgXShift,yshift=\CreditsMsgYShift,rotate=\CreditsMsgRotation]
+	\ifLaserCutterMode
+		 % Do nothing
+		 %\relax
+	\else
+		\node[font=\large, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0,0) {
+			This papercraft model was developed by Jess W. Vriesema \\
+			(Calvin University) with numerous suggestions from \\
+			Howard Turner (University of Wisconsin--Eau Claire). \\
+			\hspace{1cm}\\
+			This edition was printed by Calvin University's   \\
+			Printing Services. Laser-cutting was donated\\
+			by Daniel Van Noord and Optec, Inc, \\
+			\url{https://www.optecinc.com/}. 
+		};
+	\fi
+\end{scope}
+
+
 \begin{scope}[xscale=-1]
 
 \begin{scope}[xshift=\HelpCardXShift,yshift=\HelpCardYShift,rotate=\HelpCardRotation]
@@ -1784,7 +1806,7 @@ version={4.0},
 		\centering
 		%Illustrated assembly instructions are available at \url{https://www.lpl.arizona.edu/~vriesema/solar_motion_instructions.php}. \\
 		%\bigskip
-		{\small \textbf{Assembly Instructions:} \textbf{(1)} Cut out the grey pieces and remove any interior white regions. \textbf{(2)} Make incisions along the thick lines indicated by scissors. \textbf{(2)} From the back, fold the two L-shaped supports of the inner Solar Frame down, then fold the left L to the right so that ``Attach here'' is visible. \textbf{(3)} Position the underside of the Observer's Horizon disc such that its ``Attach here'' label aligns with that of the support so that the labels are facing each other and the slit on the Observer's Horizon disc points towards the Solar Declination scale. \textbf{(4)} Tape the Observer's Horizon discto the support such that the labels are hidden. \textbf{(5)} Insert the Observer's Horizon slit into the latitude scale so the disk can tilt along it. \textbf{(6)} Fold the ``feet'' of the Base Support and Solar Frame (left foot away, right foot towards you), then insert the pieces into each other at a 90{\degree} angle such that corner letters match. \textbf{(7)} Fold the feet flat and tape them together to form a square base. \textbf{(8)} Insert the Time Dial into the Time of Day slot. \textbf{(9)} Fold the ``Sun'' box in half with the labels facing outward and \emph{carefully} fold the inner flaps inward. Friction from the inner flaps should prevent the Sun from sliding unless you move it yourself. \textbf{(10)} Position the Sun on the Solar Arm with ``Sun'' on the outside of the Solar Arm. Tape the Sun box halves together so it can slide along the Solar Arm. \textbf{(12)} Crease the Solar Arm along its polar axis so it can swivel.} \\
+		{\small \textbf{Assembly Instructions:} \textbf{(1)} Cut out the grey pieces and remove any white interior regions. \textbf{(2)} Make incisions along the thick lines indicated by scissors. \textbf{(2)} From the back, fold the two L-shaped supports of the inner Solar Frame down, then fold the left~L to the right so that ``Attach here'' is visible. \textbf{(3)} Position the underside of the Observer's Horizon disc such that its ``Attach here'' label aligns with that of the support so that the labels are facing each other and the slit on the Observer's Horizon disc points towards the Solar Declination scale. \textbf{(4)} Tape the Observer's Horizon disc to the support such that the labels are hidden. \textbf{(5)} Insert the Observer's Horizon slit into the latitude scale so the disk can tilt along it. \textbf{(6)} Fold the ``feet'' of the Base Support and Solar Frame (left foot away, right foot towards you), then insert the pieces into each other at a 90{\degree} angle such that corner letters match. \textbf{(7)} Fold the feet flat and tape them to form a square base. \textbf{(8)} Insert the Time Dial into the Time of Day slot. \textbf{(9)} Fold the ``Sun'' box in half with the labels facing outward and \emph{carefully} fold the inner flaps inward. Friction from the inner flaps should prevent the Sun from sliding on its own. \textbf{(10)} Position the Sun on the Solar Arm with ``Sun'' on the outside of the Solar Arm. Tape the Sun box halves together so it can slide along the Solar Arm. \textbf{(12)} Crease the Solar Arm along its polar axis so it can swivel.} \\
 		%\medskip
 		%{\small Videos %, including an introduction, an assembly tutorial and examples, \\
 		%will soon be available in the following YouTube playlist: \href{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}.} \\
@@ -1880,7 +1902,7 @@ version={4.0},
 \node[scale=\HorizonDiskTapeMeScale,font=\normalsize, align=right,rotate=90] at (\HorizonDiskCopyrightX,\HorizonDiskCopyrightY) {Copyright 2025 by \\ Jess W. Vriesema. \\ All rights reserved.};
 \node[scale=\HorizonDiskTapeMeScale,font=\normalsize, align=center, rotate=90] at (\HorizonDiskLicenseX,\HorizonDiskLicenseY) {\doclicenseImage[imagewidth=2.5cm] };  % Clickable URL! 
 
-%\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=0] at (-1.3*\SolarFrameCenterSupportFlapWidth,0) {\includegraphics[width=2.5cm]{qr_code_simple.png}};
+\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=0] at (-1.3*\SolarFrameCenterSupportFlapWidth,0) {\includegraphics[width=2.5cm]{QR codes/qr_to_GitHub.png}};
 %\node[scale=\HorizonDiskTapeMeScale,font=\normalsize,rotate=90] at (-\SolarFrameCenterSupportFlapWidth/3,0) {\bfseries{Scan for more info:}};
 
 %}
@@ -2477,6 +2499,8 @@ version={4.0},
 \end{scope}
 
 \end{scope} % mirror image
+
+
 \end{tikzpicture}
 
 \par
@@ -2484,9 +2508,6 @@ version={4.0},
 
 
 \fi
-
-
-
 
 
 
