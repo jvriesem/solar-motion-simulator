@@ -77,10 +77,12 @@ version={4.0},
 % See https://ramblingacademic.com/2016/10/31/multiple-latex-document-versions/ for examples
 % Declare new switches (default value of false)
 \newif\ifPrintHelperLines  % if true, print "helper lines" (1cm x 1cm grid) -- not recommended
+\PrintHelperLinesfalse  % set \printHelperLines to false
 %\PrintHelperLinestrue  % set \printHelperLines to true
 
 \newif\ifPrintInstructions  % if true, print page of instructions
 \PrintInstructionsfalse  % set \PrintInstructions to false
+%\PrintInstructionstrue  % set \PrintInstructions to true
  
 \newif\ifLaserCutterMode  % if true, color laser-cutter lines a special color
 %\LaserCutterModetrue  % set \LaserCutterMode to true
@@ -92,10 +94,12 @@ version={4.0},
 \newcommand*{\LaserCutFoldWidth}{0.2cm}  % extra space at edges for fold
 
 \newif\ifUseHDTeeth  % if true, use laser-cutter to create "teeth" along the Horizon Disk incision instead of a line
-\UseHDTeethtrue % set \UseHDTeeth to true
+\UseHDTeethfalse % set \UseHDTeeth to false
+%\UseHDTeethtrue % set \UseHDTeeth to true
 
 
 \newif\ifPrintWishlist  % if true, print page of wishlist (for developer's use only.)
+\PrintWishlistfalse  % set \PrintWishlist to false
 %\PrintWishlisttrue  % set \PrintWishlist to true
 
 
@@ -1785,10 +1789,15 @@ version={4.0},
 		 % Do nothing
 		 %\relax
 	\else
-		\node[font=\large, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0,0.85) {
-			This papercraft model was developed by Jess W. Vriesema \\
-			(Calvin University) with numerous suggestions from \\
-			Howard Turner (University of Wisconsin--Eau Claire).
+		\node[font=\large, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0.25,0.45) {
+			This papercraft model was developed by \\
+			\href{https://calvin.edu/people/jess-vriesema}{Jess W. Vriesema} (Calvin University) \\
+			with numerous suggestions from \\
+			\href{https://www.uwec.edu/profiles/howardta}{Turner Howard} (University of\\
+			 Wisconsin--Eau Claire). It was inspired by \\
+			 the Solar Motion Demonstrator, which \\
+			 was created by Joseph L. Snider \\
+			 (Oberlin College, ret.).
 		};
 %		\node[font=\large, text width=\HelpCardWidth/\HelpDiskTextScale-2*\HelpDiskTextMargin/\HelpDiskTextScale, scale=\HelpDiskTextScale] at (0,-0.65) {
 %			This edition was printed by Calvin University's   \\
@@ -1812,7 +1821,7 @@ version={4.0},
 		%{\small Videos %, including an introduction, an assembly tutorial and examples, \\
 		%will soon be available in the following YouTube playlist: \href{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}{https://youtube.com/playlist?list=PL4fXsHwnHJ0unhdGVK-Qs-AM1HSjOCj5C}.} \\
 		%\bigskip
-		%\textbf{Author's Note:} This papercraft model was inspired by the ``Solar Motion Demonstrator'' developed by J.L. Snider of Oberlin College in 1992, which I first encountered in a middle school science class. When I was preparing to teach Physics~115 at UW--Eau Claire, I could not find Snider's model, so I independently developed my own version of it.  It was designed to be cheap and easy to assemble.  I wish to thank Howard Turner of UW--Eau Claire for his help in developing this model.  This work is dedicated to curious students of astronomy, planetary science and Earth science, and those who teach them---especially those teachers with limited resources.  This model uses \emph{apparent solar time}, which ignores time zones and the equation of time. \\
+		%\textbf{Author's Note:} This papercraft model was inspired by the ``Solar Motion Demonstrator'' developed by J.L. Snider of Oberlin College in 1992, which I first encountered in a middle school science class. When I was preparing to teach Physics~115 at UW--Eau Claire, I could not find Snider's model, so I independently developed my own version of it.  It was designed to be cheap and easy to assemble.  I wish to thank Turner Howard of UW--Eau Claire for his help in developing this model.  This work is dedicated to curious students of astronomy, planetary science and Earth science, and those who teach them---especially those teachers with limited resources.  This model uses \emph{apparent solar time}, which ignores time zones and the equation of time. \\
 		\medskip
 		For questions or suggestions, please email me at \href{mailto:jess.vriesema@calvin.edu}{jess.vriesema@calvin.edu}. \\
 		%Web page: \url{https://www.lpl.arizona.edu/~vriesema/} \\
@@ -2715,12 +2724,13 @@ version={4.0},
 		\item Add a version number to the model somewhere so people can refer to it accurately when giving me feedback. 
 		\item Organize this to-do list into sections?
 		\item Split file into SMS (two-side), laser cut stencil, and instruction documents?
+		\item Add an arrow on the Time Dial to show the direction of time? (Kinda unnecessary....)
 		\item Develop tools to overlay stencil on top of PDF? 
 		\item Add a comment line for documentation above every draw command (--/arc/circle/rectangle/etc.) for all segments and for each macro?
 		\item Add date ranges to the declination scale? (Maybe at bottom?) Make a switch for this so educators can decide how many clues to give students.
 		\item Make a version with AM/PM times instead of 24-hour time. Adjust instructions accordingly. 
 		\item Make a switch to use the Solar Carriage flaps (else just a box)
-		\item Revise the instruction card and instructions to use less jingo. 
+		\item Revise the instruction card and instructions to use less jargon. 
 		\item Clarify the license terms somewhere?
 		\item Move the ``S'' off-axis somewhat, since it gets sliced in two otherwise?
 		\item Draw cardinal points on the back of the horizon disk? 

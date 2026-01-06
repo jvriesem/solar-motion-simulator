@@ -1,382 +1,0 @@
-%PDF-1.7
-%ĞÔÅØ
-7 0 obj
-<<
-/Type /Metadata /Subtype /XML 
-/Length 15164     
->>
-stream
-<?xpacket begin="ï»¿" id="W5M0MpCehiHzreSzNTczkc9d"?>
-<x:xmpmeta xmlns:x="adobe:ns:meta/">
-  <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
-    <rdf:Description rdf:about=""
-                     xmlns:pdf="http://ns.adobe.com/pdf/1.3/"
-                     xmlns:xmpRights="http://ns.adobe.com/xap/1.0/rights/"
-                     xmlns:dc="http://purl.org/dc/elements/1.1/"
-                     xmlns:photoshop="http://ns.adobe.com/photoshop/1.0/"
-                     xmlns:xmp="http://ns.adobe.com/xap/1.0/"
-                     xmlns:xmpMM="http://ns.adobe.com/xap/1.0/mm/"
-                     xmlns:stEvt="http://ns.adobe.com/xap/1.0/sType/ResourceEvent#"
-                     xmlns:pdfaid="http://www.aiim.org/pdfa/ns/id/"
-                     xmlns:pdfuaid="http://www.aiim.org/pdfua/ns/id/"
-                     xmlns:pdfx="http://ns.adobe.com/pdfx/1.3/"
-                     xmlns:prism="http://prismstandard.org/namespaces/basic/3.0/"
-                     xmlns:jav="http://www.niso.org/schemas/jav/1.0/"
-                     xmlns:xmpTPg="http://ns.adobe.com/xap/1.0/t/pg/"
-                     xmlns:stFnt="http://ns.adobe.com/xap/1.0/sType/Font#"
-                     xmlns:Iptc4xmpCore="http://iptc.org/std/Iptc4xmpCore/1.0/xmlns/"
-                     xmlns:pdfaExtension="http://www.aiim.org/pdfa/ns/extension/"
-                     xmlns:pdfaSchema="http://www.aiim.org/pdfa/ns/schema#"
-                     xmlns:pdfaProperty="http://www.aiim.org/pdfa/ns/property#"
-                     xmlns:pdfaType="http://www.aiim.org/pdfa/ns/type#"
-                     xmlns:pdfaField="http://www.aiim.org/pdfa/ns/field#">
-      <pdfaExtension:schemas>
-        <rdf:Bag>
-          <rdf:li rdf:parseType="Resource">
-            <pdfaSchema:schema>Adobe PDF Schema</pdfaSchema:schema>
-            <pdfaSchema:prefix>pdf</pdfaSchema:prefix>
-            <pdfaSchema:namespaceURI>http://ns.adobe.com/pdf/1.3/</pdfaSchema:namespaceURI>
-            <pdfaSchema:property>
-              <rdf:Seq>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>Trapped</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>Indication if the document has been modified to include trapping information</pdfaProperty:description>
-                </rdf:li>
-              </rdf:Seq>
-            </pdfaSchema:property>
-          </rdf:li>
-          <rdf:li rdf:parseType="Resource">
-            <pdfaSchema:schema>XMP Media Management Schema</pdfaSchema:schema>
-            <pdfaSchema:prefix>xmpMM</pdfaSchema:prefix>
-            <pdfaSchema:namespaceURI>http://ns.adobe.com/xap/1.0/mm/</pdfaSchema:namespaceURI>
-            <pdfaSchema:property>
-              <rdf:Seq>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>DocumentID</pdfaProperty:name>
-                  <pdfaProperty:valueType>URI</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>UUID based identifier for all versions and renditions of a document</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>InstanceID</pdfaProperty:name>
-                  <pdfaProperty:valueType>URI</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>UUID based identifier for specific incarnation of a document</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>VersionID</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>Document version identifier</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>RenditionClass</pdfaProperty:name>
-                  <pdfaProperty:valueType>RenditionClass</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>The manner in which a document is rendered</pdfaProperty:description>
-                </rdf:li>
-              </rdf:Seq>
-            </pdfaSchema:property>
-          </rdf:li>
-          <rdf:li rdf:parseType="Resource">
-            <pdfaSchema:schema>PRISM Basic Metadata</pdfaSchema:schema>
-            <pdfaSchema:prefix>prism</pdfaSchema:prefix>
-            <pdfaSchema:namespaceURI>http://prismstandard.org/namespaces/basic/3.0/</pdfaSchema:namespaceURI>
-            <pdfaSchema:property>
-              <rdf:Seq>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>complianceProfile</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>PRISM specification compliance profile to which this document adheres</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>publicationName</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Publication name</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>aggregationType</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Publication type</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>bookEdition</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Edition of the book in which the document was published</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>volume</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Publication volume number</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>number</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Publication issue number within a volume</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>pageRange</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Page range for the document within the print version of its publication</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>issn</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>ISSN for the printed publication in which the document was published</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>eIssn</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>ISSN for the electronic publication in which the document was published</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>isbn</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>ISBN for the publication in which the document was published</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>doi</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Digital Object Identifier for the document</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>url</pdfaProperty:name>
-                  <pdfaProperty:valueType>URL</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>URL at which the document can be found</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>byteCount</pdfaProperty:name>
-                  <pdfaProperty:valueType>Integer</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>Approximate file size in octets</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>pageCount</pdfaProperty:name>
-                  <pdfaProperty:valueType>Integer</pdfaProperty:valueType>
-                  <pdfaProperty:category>internal</pdfaProperty:category>
-                  <pdfaProperty:description>Number of pages in the print version of the document</pdfaProperty:description>
-                </rdf:li>
-                <rdf:li rdf:parseType="Resource">
-                  <pdfaProperty:name>subtitle</pdfaProperty:name>
-                  <pdfaProperty:valueType>Text</pdfaProperty:valueType>
-                  <pdfaProperty:category>external</pdfaProperty:category>
-                  <pdfaProperty:description>Document's subtitle</pdfaProperty:description>
-                </rdf:li>
-              </rdf:Seq>
-            </pdfaSchema:property>
-          </rdf:li>
-        </rdf:Bag>
-      </pdfaExtension:schemas>
-      <pdf:Producer>Jess W Vriesema</pdf:Producer>
-      <pdf:Keywords>EarthSunSimulationAstronomySolar MotionHorizonPrintable pdfnewwindow=true</pdf:Keywords>
-      <pdf:PDFVersion>1.7</pdf:PDFVersion>
-      <xmpRights:Marked>True</xmpRights:Marked>
-      <xmpRights:WebStatement>https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en</xmpRights:WebStatement>
-      <dc:format>application/pdf</dc:format>
-      <dc:title>
-        <rdf:Alt>
-          <rdf:li xml:lang="x-default">Solar Motion Simulator</rdf:li>
-        </rdf:Alt>
-      </dc:title>
-      <dc:description>
-        <rdf:Alt>
-          <rdf:li xml:lang="x-default">Solar Motion Simulator</rdf:li>
-        </rdf:Alt>
-      </dc:description>
-      <dc:rights>
-        <rdf:Alt>
-          <rdf:li xml:lang="x-default">This work is licensed under a Creative Commons "Attribution-NonCommercial-ShareAlike 4.0 International" license.</rdf:li>
-        </rdf:Alt>
-      </dc:rights>
-      <dc:date>
-        <rdf:Seq>
-          <rdf:li>2025-10-07T12:57:10-04:00</rdf:li>
-        </rdf:Seq>
-      </dc:date>
-      <dc:type>
-        <rdf:Bag>
-          <rdf:li>Text</rdf:li>
-        </rdf:Bag>
-      </dc:type>
-      <dc:source>Sun Motion Simulator.tex</dc:source>
-      <xmp:CreateDate>2025-10-07T12:57:10-04:00</xmp:CreateDate>
-      <xmp:ModifyDate>2025-10-07T12:57:10-04:00</xmp:ModifyDate>
-      <xmp:MetadataDate>2025-10-07T12:57:10-04:00</xmp:MetadataDate>
-      <xmp:CreatorTool>Jess W Vriesema</xmp:CreatorTool>
-      <xmpMM:DocumentID>uuid:590a82b6-75f7-4ae4-8ef7-f7f7aefd182b</xmpMM:DocumentID>
-      <xmpMM:InstanceID>uuid:20a39b6c-e4ce-4a33-aa3e-4c9b67f7a826</xmpMM:InstanceID>
-      <xmpMM:VersionID>1</xmpMM:VersionID>
-      <xmpMM:RenditionClass>default</xmpMM:RenditionClass>
-      <prism:complianceProfile>three</prism:complianceProfile>
-      <prism:pageCount>1</prism:pageCount>
-      <xmpTPg:NPages>1</xmpTPg:NPages>
-    </rdf:Description>
-  </rdf:RDF>
-</x:xmpmeta>
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-                                                               
-<?xpacket end="w"?>
-
-endstream
-endobj
-9 0 obj
-<<
-/Length 2564      
-/Filter /FlateDecode
->>
-stream
-xÚ­ZMä¸½÷¯ğ19”"’"%]HÈm“¹-öÔ‹$‡î ÙKş~­*Yr—»ÁLÏ³š¤øMÚqùç—o/q÷/áï¸Ğ"ªÁ¢-É4²åõıå?N}[Ö£/1H-ºüwq~~üğËòëC\~[^(ˆe?ÔÈşíÛã§ßAâ&Ä Mµ,·Ä`'”Óò)ª<ãoËËßlş)…ÊjÉIIK‰‹3—`Ä)ŸfÑ¥e¶ I‰WÃõ¶'yiˆ¹ŠŒò¾Ï¶v&O­ò„şÀ¾ÖPj‚^¤ÆR”Õ$dªR¡†ÇcYQ@)JdH›Ô
-9s	±”*ËëÁ?d"•‚å«‹²rÅ]]­8B$¥.àr,jËjÈ9Œ — ÀÍ‹ÑIYjÍµÒ(‘¬¢ˆ†šŒïLYÙ……L¹Ôâ–r(æJ£
- ]%%¬s’4JÆiT°;ØÖ˜]–Íb!e­<­– PÅdà“JyBéıëêÊ¡R†®ŞV¿‚¹JŞÁ% ÇdúG€qB$­d·Æ‘?)h.%í˜ğDü wÛÆ
-‡š©Á²DÙñĞ‰ôs˜$ÏîHÀT eİ±ünnzsVÓã2¥¶X{ÎrH‘¬îáít7ğûÓ<óvŞïş[FwòÙ¦iJ;i*›Ü(d¬Fy§))#•iÉAØJİ‘ye–m¡ [íh#¡æšw´Qúj)²W"²<ä°º£Í¨ÈT£]Jş„Û'«HT.jLÚ´Ëá@/š¡¤"ğCZ" bHu°§"¤½“Y„rDÕ!jÚÒ›zÍË	=©'.¼@*-×Œ[Ğ0i¾”$;XƒÄz:å:„¢Å&R^	á®luäËì×Wå[ët$4IÛMNVÂÃø(6k!t¦(t@İà?.[¬ø±YÊİˆ’ÀËEëfÑ³úxæ+Š8¿)²”´€o,c|†N‚\òTø»ç]2
-_‰ÕZo€”gYlCßNª©†–l^e¸µ%D¡V˜ü,ı.(!Ì‹¥µeÜ.ÕÑsä		Øx’ó}@ûŞN»‚DïP¬°¶À@4ÀAò€ºÙQì
-'MK±@¹H™Q´oHÎ–­Áù–­•åÎo‚OInŞ=Å‘’‹®1¸eÇYM<âv–rƒ£…ˆ.¯u,æ.ÇHL£ëîl…û#SëŒNJéRL
-ì"è™»£>LVc¤+«u"ü†.7s™ÜĞI‰Y{ße«Aw¨†g«•Š*›(íø
-%ùL0­£“Í2ê7øÌ6{Lö '‹u	&‹uq¯Z,ã’/>4Pl·î`ñ–¾Z¾Lb2:ù™ºëT+•t™¼ç²„¬©;HmÙé,4ä„²g-…
-ŒîroèÙTA!c:˜©'ïqE®SRË@BÊ˜¯’ß².z7¸­ÎºéèEİLÔ»n®Rß²ãH¾ëæ"ù1‹mªg¤lvYõèàçÌ³e+‡¬Å+ûEò[v¨O4è÷®Ròş úM7W-Ûu3Y¶ëæ*ù£Gê]7©Ÿè;oNyß|½ƒ™£¢¶ı‹®-7ÇáÁÛÉf((\1NpÄ¨…yêÎCPo|¸¡%ÊVÛ<†	ñèëEÁq”4ü&šo°%­ùã0$uÆèG!_^ş4R˜èAIár©U§Æ5ºˆMrÌµ*× YaaF¡*£&ßPHsÊLÀPg‹o5NŠ‚ßxí@È‡V¯ÌH€G8‚²F$ƒ1qfMKœ“a „f¨Ä¶( GÏXÉ-€ñµıP$ûKb4{7ò:ùê°õÕm¾˜òÙ^Ñ±Ğ}yìş‡¹¢hh Ôæ‰çp÷®³Zp	Í²\\ŒjÚÅÂ€#ärßU1u _(_Å’‚u³tá¶=gò Í8á;ˆ,Z½Ò¡‘gÌı°Œ/cÜYE‘Z8E„¦\qÕ„ĞîtŞÛJ7™o:?ÔWH‹4¾‰ßˆ~¼]àœoÛ©†+Ãˆ!ÃG-¦iuPNˆ’u£­1ûJÆs)µí
-‚7ÆUˆ†ú†’óºß[;Ò›d©ìÚl²¸#štƒçVd$ ‰u­e£©ùıÃ•˜[: âï£róU©vcxªç]”Ò ƒqfköÂ08 qİà·	n%§7ê#fz9Æ'2„m~€Ï•Cb4„[×ÃûO*ö “ÖÛğ)/‡‡"—"İ+.–›Ş¢é:øR¡´cîH¼r™
-Z@’%›Ü§¥ë*º!è­h[§pÒ šŠ]fà¡!Å{:gàÛËX³ğYïbLÂ	ƒîƒ· %"X¿€…F¤gß©ìX¨¿…ÉzÃ–¸†¨¦zAò½=áú«Ï¤—ä‚ê¡QwŠw°ÓuO½}í5ì=äuQ¿ág«3û"›hÏ‚r€füUêeÈyVe}0±¸‡YşGŠê!wÅ}Æ.5…É f‰_q{(|¸1ÚY¶˜ò83Kù{ÂTˆUõµ·%ÑÍëF5]»±şàm÷ÀßÕ¬ùşÀß*5zü`"EÅÛ*;ü\ì›Â”üC€ŠŞCµíóÇèüÑ@R:Ïã!®wpÈ~õ®©~½ï®}oh¯À#|¢3˜hÄÏÜÀ_Qb ×2(ã}Æ7íÍ$­áĞÕ?r@a-£3: Œ`««õ§MQ×!;ï™´\+õx0£ñ—šÊ‡‹ 93têé˜Ü_“î™j¸¥ZòWÜdmöôãE™ê,J¡ú.aÏ£Ä`"ëgAy<MY÷ÖB¼1³€ÆL¡Í$à#Y{Á]¿^ãÈ­ïp1”êXò…ØÖg‡0<3r6”ıÊ>%º¢ò×´ŒdØ«¯äÑC³¹«mGïkz™hàƒÿë¶Ò÷Ô×	Çß;oDÍÈ¥ü;öÚöwQ·£ÛšOîßÿ×¡ÂÍ'Œ>Š(&’‡O®ÿK4à6ºù¶	c»ï	Ğ	cğ³»Ëu¸ıDõGHÌb&?Äş'¸!]cº–öa¡)ÈËıqöÅÎF¹ƒ¯÷@ájq>\3(¬Ÿïd7°ËĞ(tÜ?Àª¾YÉ¦
-¹Î2tp¥°	<Ş®6}¢‡fğ#Õí,ı[ôô-Ù­ßÓ`&|\A&¥ğh¯!1àıFG6G·éM¢mg'16boŸİçîtêQ#9Pôõâû?¸ĞdĞDÇƒôCûãÑ¶îFÇOx~|2Œ?ÿ^ÿŞ~|{||>@şéûËŸş‚¯şœ-ßÿ±HôÕ”!ZC)eùşÛòËè¿~ÿk§øçï/ÿ;²•|
-endstream
-endobj
-15 0 obj
-<<
-/Length1 1365
-/Length2 5943
-/Length3 0
-/Length 6882      
-/Filter /FlateDecode
->>
-stream
-xÚtT“ÛÒ6ˆ éEÊÒkBoÒ	½I— @0$B©‡¢Š"EªB¤¥JŞ›R•*(MÊË¹÷ûÿk}ßÊZoöyföÌçÙÜF&Â*ÎhG8Â
-CDÀr€šşM ƒÅEÀ`17·)‹„ÿ1ƒ¸Íáo%÷ 5†ÅÛÔaX<Nt| D€HÉA¤åÀ`@–ıˆÆÈê0_„3 /è Qpo·Ú3 ƒpuÃâù{	ğ9ñYYi¡_á€Šƒp‚¡ }Öî?Ñ	†LĞN86à)øÜ°XO9QQ???˜‡·ãªÈ/ø!°nÀM¸7ãw~6À<à¿;q¦nïßv´Ö†xáGyã#|PÎp€?0ÑÖ=á¨ß`½ß !àÏİ È¿Òı‰ş™úsrB{xÂP”+à‚@ÂC¨Ö+ÀPÎ?0¤7ó…!0G<àWå0 ªbÀğşiÏÛ	ƒğÄz‹x#?[ı™Ë(g5´‡…õı¬O;á¯=@ô÷do£Ğ~¨ ?ÊÙågÎ>¢f(„—\[ıoıÛæ
-Ç’`0XZV€{p'7ÑŸéM<á¿œŸf|!AhOÀß<áÇÿ‚¼a¾p ‹ñ‡ı§ãŸ;8#œ°€#Üı;;Şwù½Çƒğ¬ÁxîA ğÏß¿V¶xz9£QÈ€ÃÍWÔDİR×JUğwÇÿò©ª¢ı a	0 ,&	 ?I&_„ü3ñ§ŒÿˆÕF¹ ÙßÕâ¯éïŠ}ÿ€ï8øæ2@ãYøşMr°$Ø	ÿüŸ©ş+äÿÇğŸYş7’ÿwAP$ò—›ï—ÿÿqÃ<È€? <i}°xè£ñ2@ı7Ôş[´úpg„Ç{µ±0¼TP®È]#ÂŠğ‡;!°Nn¿ÙòÛnöSeH
-n„öFü|V aühşË‡—–ÓmüÓá§ä/¯œ©rB;ÿ”˜˜¤ Ã`` üñ;I ‚×¢3Üÿ‰Q‹ğí… .hèçD%dQüãôÓúGb'¯­_£ÇŸú÷ş—áp¸hrí$é^ÙxøJåšŸğrÿaîe‹'üÂA“˜&Ÿã+—ñ—eÜÇì«<ên½:³¨Á÷]yŠı4h½®òRL}ŠqÃàû¤›ƒË ‰úwò×U^w°^f6U^	>õ
-6¿MTGøV‡;ÛËGæŠQ.Í¡_»¦ÿëÜtoôØ²ñJ™”.Ù	nH8Ñ,Á&üÅwcæ(#'	V˜•T€zÇŸräûş0õ³çì:I‚ Dñ‚ [b÷Fg_šŠy73q1İbd%úNİ;È¤º–ªÃ0TX0ónÂ¿N¡€ı…Ğãá«"kbéeˆ›ñ¨š¶rßŞÉ7¥ìG@$ïµw4K)åE5´öNCº²ûxl¹øm8ëÚÕÙÆ}ó÷Ç,S²C¯Ï
-+·õ°Ú– •^³İ=ï„¢×v×ô,¶„X¼PêPbqõƒh¸YÇÍLË¥³>&Æaû.4[Àµi¯
-Mù>’9!†E)İıªzÌù”ß’!n#ìeÙ’Ìşz/¤¤jÇàÍÂÕ8ÒÚ6â<BÊàÜñíã|&7q‡Œh¾œt–¿ræîóËWÀ«F"p¢;%ô"êEìzÉŸ$'¾vrHhk¶-—vÇÙÜp?’ÍÙ2/1kx ™gÌ±´/Ü·VŞ¥Õ.»ï¼öi¿¸XÕî3Úüh§Ä/VµûŞGSéÈœ¿ŞÜ{Öìm˜¦©áùÁâhÛeÇë›¦ª¾5÷)-Lo/ö5??ñÂi«sóLêwè~Vˆ	´P/hcz¦Lÿ×÷š0±Š&ÃC>òŒ«³÷¸3V¦‰®Û7u×˜=cV½fbz˜{=p m|¨o‘ãıà"W²Äæ…D{- /™F„Lâá_{º7ƒ/!îÌ%®vÎÌO¥rŠ¥<}ä|~£«÷¢êõKMâ`ZÅş- ¿ˆ7cN¯@ö|,%ËıS`¦ò1ûıÚ¥Ş6s´ß¢ŠoØ4[rÍ«+Åš}¹<°r"õèÙ¿f1ª³øÚÓ8¦%D÷ØÃ,ñAC¹uÖSªo‹¡ü	.Q–wIÖ¨âI	Fyi»*î§~½Ic$®‘Ã),WNÅKµp6 rE‡²L„x²½BM§Ÿ@‹#ài’&y Uºn>Ğ6Ğ¼>:¦5z-e/^´¨ç
-tÜÕ*ùğ¾ßW“X®à²óp´±Bÿjÿc2²A‡;Õ
-™lpQ0iÚ¹BÃgíÊš£‰Œ¹n·¹ìÈù’Ïa¤UU¯^¥+u39(íI§®Ó“Ù÷f[?z³'ão¤ eİ»ıp¨E0EI!/•VW‚Ñõ|ÿñÔL€ñ”¾R[R18²ÀÈ6vvÇ‰ÛfŞk;Ì¦¾~EÂPÂ—Ã:İş@»>÷Õöë²ºw+NñÌàyÖâ]}#ıgVà—½÷}ƒ¤æÙ¶0Ï¼ºŸrŠ3İ8 z˜i:d¥+2£Ëø¥›¿EˆA³G7«vKU3«	ÄÆ0Íw%N—7ºMÌ<lş¸TJÛˆ‹ùãóñËZá†ëfÆõx_wüa'3)“nï8·ëCÇ²À˜^¦4!ôı—bíŒs>ÉiÙ1#ROSt´RË¾í/œWjÏÓ}HïÄÏøşÃÁG›×gØ¥¢Å{Ú¿ı@‘˜®û5¥¬4re;Ø¨Õ¦ç÷Oî}P.°óg_“ñâĞs*]¼†^¿³1MèR½¡\şíx“œÜb•ƒ<âÚ<8èãn/y;ØMç÷qî£˜-×6”ÚŸ*i»½§ôYËQõØ‚’0ÈUA®N¤:“uHÜmšX¡…‘Œz(I“]?"áõáWeYš‡…²_otñ&/ñõ6jŸ¸W-RW@ˆô|F=èˆUÏ›yº8õ7¾x´+×XŒF—0æ—xÌ8rƒ'Ÿ;<]¿Ô“2Ÿ"êò½-ÙÄm¤!–#Çf®Âo¢ª'º¢€£ß’¤Á©e©äÍd"åKƒŞ7“ñ]¯Ÿ°$FAI’9Iã	DÊİœ@'Sµ´›2ğ-Ù[ì\pT9ÕFë“ÙÓŒ?¶ š?cIj¢XÒ_;—
-+Î.·k:€a³ØI•!ë9¢™Ğ¯ì«ÅØ®§-:QêëhvÜ:µ&òxy^ø!Jr™‰;*ælÕQ,…_œ0W½o¡Ê²jÎÿàâŒI×4‚I(g;|îÅöMjúZú‚¦hb'®É(Sd­Iïâ`˜ÿáÅçŒöÖı–æ±T{ßŒ³Ë(LÎ¿ûFdà=BÉgSÌ˜P·”ãÚú¯"‘AÌ¤pãƒ±öÊ.RâÌZóF0ßÁ@&³>:ûWÏúhßİ*†°	à–:©Ëîëv:z†EËÍâz/‡—‹Ó¯™›ËOä4öÅ_¡ .51ÌZ@5ÊÈ±El´EG¹>»ascA™ºp¬=4Íqüñ$éyø=$Òµ´%sÊq¨$q–£v7š:úŞæãéLÂÂğª÷P,ûÉË¼ öEoìmw{3×Ûù^:êJ`Ré¥’¼Õ|¹1½¬@&Û{T;8Y\A..Â×@ıM¼¾¦´,—¶âŒ'EeÂõÚGR*€0Fçò}¨aÕ®‚îååu£¾|Ã{**Œ=¾Ñ)¡sCÈ\ÕªC«åñJŞÉ~‹©åæ\p¸.pÆD÷Tq19äsÙ1‹¹U$ÓÙ¨¢U0úLœ ²kí_÷iQñ)Áe’{ª|±–È3™sô{(è`‹ò·àÌŒn,ê½³dœilw–Šå¥=mòıü™¨­>i‚ìf%5JûfÖRè¨YÙÏÔ¥jV|ÜùÆÇ¦B¬¡Ü‚8ÌÈøˆìùn-Nrï)Êï…vWrƒĞeóÙşD]à'Şw©Æº˜¨- Pÿ[#kç×3¤Ä*ó€ïUSTƒ™œ¶×ï0>~áé»ÛB‘É”¶?ÑQ(‚Q•ı‹‹Uk¥V¢9nÇâœ•¯ÊÜ6ˆ‰×}E˜=,Ÿ×üe$=æ#!›H0Ø‹{N(¿ğ±ÀùìeëMÂä’«'óq
-ïç<Zì ‰¤Áy7?—U¨Ò¼O¡¦áeş9×m¡©»›Î8¥Z€6jjÿ4HÊ…{ĞÄ9(.Şx`$;.»q+Ñ[6†×a±„b3eq$gğ°`£Ë{ø{çÃve—ò;V‹Ù(1	?ê"d Ù
-×ˆ˜Å6M…ßlÔ»CYÇó¼eNÃçÏhzú,Ú Ô¶³¢Ïp	Æå—c»Ú?j½ÀÍ Lé¿&®Ù ûÎöyúùÑ&Ü¦¯êu¥ï—‘
-ŞLÛ°Æ¤ŸtY}ï Ù´ò‚‡4–O°ÄLXÅõC	Í4r7öÎv†u#šG)µx+ª	o+÷SjO.`¹ó–ÎS3š­ù¥ÛyŞœd»õ£2ÉË™>[ñLÃZ«MÛ¾òZbBGæÓDQö¨GD:z9ôd¤|©Ê ŠÕì÷OA%U¬AºĞªùé»Ûés­¨/wè7ôÊòlI§aùf9„uA'±Ô¾Ÿ¶õægêWr%R¾Ap…Ò`<TÎ·¼Ñ¶¾ÛÛEİš'Hk¸QtĞãı}Në¨”0FFÊ¡¦ÆÄàD*bz«zc›mÌ€"[pôŒrõ6zâÌ%<h³_Ö?’Î£§àùö"u-%’†<¸îNz¥ÌÚ±Hw{jµ Kg`@¡oûGû
-ÕÀÒ˜gÑßÄ”|GII.|Ùkü>ÓfIËãaÍ÷ ¥NÇ0ºúMr\‘J/C/[)˜ØŞùõìBZÉ­:öùeÊeöÔL_ğÑZMôá]òÙùã­"y˜uì]—C#‰0­¨lºà/—,N*å§5ÙÆh¯ZÑpŠ«~“œÜ;Y9ü¨eÃ9\lMrIíOÛt’48”Åy*ŠIë4¨îUy‹mÅU»ò}+ò§3º‚U´.ı$Ó—¢éİQ.Ç~“KÖVŠ–'öØ# ”QÅçÛıÙ½uß¢0^¯ı¦ªëMUòíºÿkûìq«L¹
-IıeçW¶¦i·ã.ÑÜk(¡¬ºZøCÔ=?j¡c2‡#dÎááÖº:KXniÌØ²‹DkşÅ*e/V;¿¤ñrh×¨È¤ËWå	]1&õªı·ÔLx+)ÅÃ“E¬Š±°*5ş±±ı½}Ô´+mrÕ,úw÷åØ^lêªÆÌíHÁÛ«[fØË’jAŠ×o=“¢™‹sC‡ù›£«3ª
-vEå/™0ñ’ÛÕ}—[Â^Ô)wWşBë_ü:Bƒ¬Ù#ß_O7mìuá^QçÃÛ¦¼u;YWå³x]CM,ù„c‘zjËv@²ù1È+i¼İk¨ \i)~ ¢f"ØÌ’gi»Ãï¾`"ÖG&^¬“ª?ÕùÉ÷u¸Š‹”­Şm¼,êái ©+Mhq
-æo›˜ƒÅi¥–,Üª.“ğI4yÛÑ¾Úö­„ÖäxŸjõhãÁÇ¡6éˆÕráğ3&]î5§²Ú¶é7T'{µm¯…™@€ë{ÃõTnWz­£õÜpVÂËwï˜`Î`’€¾‘•fÑè€<›ìÅDÛ‹EƒVôñQÊ’aÉ³óƒ|Ì ÃŒ$E²Ì¶ˆšnu-÷˜Ü«‹Ştº»ş3© ‘VÅ©±²²œ·—N!ÛåyRË®+¬N=}µÀï2¸Lw¨é¬QÊ]Ôv"P6ÑâIU8'nLŞº÷EÈĞ„gBï²Ø,š—ãÄ;ö`%*‹r_‡i³œ8òüwˆSï:~Ğ?ûë£¨Kˆø|júúûç‹œšE©T%«¼.úŞƒ—FØ--ÌNCNö«jj­Ú«íÈÂFÆ¹İû:9´ŞlÇj“v÷İc·?ª—_‹©èßMú¤Së›s¥"Üvæ:ˆkòršWÍM)\2M!Ò„ñ”µaóı«–¯Ê)%Œ™—ŸÂ^V†	Ó¦©„:ÅEF¢-+õùvï“`j^\Ÿv@Y¹O;ˆ#/ø²–:Ôój#³OCÊ9–+Or¾µöl=Ì%Ñ({²}£ß¶fG>á¶nx›È!³f+}Ñóğ˜¼DÆ'`†³›:»÷ÈäâäÕ&(Ùp‡ãtÖv4óøÚaóÆ3¡Â7Ølş„œÖnöÃ¨öi¾R{¸aøgV¨ù›3¯zÅ—>kíÂšr±¿¶FdE¥kİ²á¾o¶é;ÑLÀF1¸hÇ¸ğ^51€;ÌÀôSmµøÆRËõ¥FZäCzáañÈVÄâ¸–òÌƒp—§·koŠ¬§?õåëô¡æí3YlUoèDœ°3J§Ğç’[}S{]Òáñ¹Ê®ºLÓGÒ^3ıÒaÕ$äùJ¬hÂÙÙBbï§Ğ‚Ä_åT¬ıuÅOÁœ«¬ëqa¡­ò¶ş‘Ã„İP¦î¾¼d1I¾_çzÃÅ%mŒ×¶J¡¸‹Êİy+*„ÏË°ÖÙ¥¶İ¦Áí!j+ÌÕÏ¬êß÷åî'N9³]ºY@4¤¨`©È×…q„hù?ÕÃpùİõnŸ>ÈZ¼ğ9'5Ye”ÕMfŠ¤j7Õ-‚Yr-ù¹v§TFXºàÍ«3"/à¢6_êy£ûUI½8íf§ª`7¶f®¤@õO4fZø5X%
-6¾¼%×¿½Úş!¿#òv·
-:	o¾ÖIèàs¨|9øâËvº±™ØµÊ§ïì¦¤®m‰fşp€íäP?ï¢ˆ³.ë»ê0ô¦W#+¯Õ¹…xÆv<'p±«‹d qïyµÚ­ü#/n9¤#ÔŸreÛ¢šøRÚ2*ÆûŞ0JàJĞ•2¤Ò­¢À½øG=ÔñŠµ«2›ìÂzƒ<]y?ˆ¶u‡ÊBîV‡ÔÜ­Ù·İŞ8¥zß÷ïìlNşH¦;5îùXhàè%8İøf.2Íy9qò…ÙåÆÀÁ=×/®}°¥{|*¡Ùƒi
-m4–Ç³µ¸—/t¹îŸK(YŠÙ¶>(ÔzÚ—›>¾ûÔ®eÀK®Èxb¶¹w‡ü  9y@Zqƒÿ]ş^šêAÖ…úÂiÎÏAêÑ7DÅ°§úß¼—Ÿ‡ı¸-«mù-Ù%¯(cèÓù‡Ó‚4“Ï-56^¤^íùò‘£y S@gÚDúJó”[)Ëñ¶û4+ÏĞ¤Êš¹`ñJìÛºRê)êßSr–¹¤|+L˜M­¨şº>ÍXª÷ø\¢ÿÅÖªR:ÁŞıƒ¶£P(ƒ³¹¦Ş˜à*½7İKÍ³ü;ÑÚ"¯Ê¶‹İû„n	”/n±½ŒT/Â*“‹À©Ÿ¦?[ÓŸPVtçW°psXÒoŒU<Ïí>¿ó¾°i®®3ü¸¾Ş’2dğ…&®‹ái—J×™ãé…'yÉBä‰ã8‡u÷‡¯÷'™f×\Û¬2ŸØ¤±2‘É§]nşrP·i¿K¡å3"unÜq:ğ„7ÓX¼ËQŞÿzí=vñ=v“^9œ»#Õæ4w-V'é’¨bOáùV+Æ|.¼•ÉßöUI£"ÿ§íg-U¶aÈÌ#"Iô›«Ö«9Pù«B<…¼4ˆ¢8›rãí]­‘¾oìÍJ¦r›ÊĞm†Uƒs²K&–-³àr…—ünc$áM.uPõ·ûÓ"¯M/ğÛ™
-³E¡üBN…ÈboÔjĞ¨~+; ³"K¼I¯
-lÙßo²UO`7ÏÎ¬>J:Üg€Ş±O÷oIŒ 2Ë
-çµL®êŒ‰ÔT¦4»*¥MfÃ¹:³¯x"×mnÿãB·âèsYmpıp•gĞé¶¸ÙTà»¯İ>KĞ¢ŞÉü¨ïFó…=übe(ï˜dûñ—î¸ÒÄ½§ó‘[pv¿^PW6CëvÉ«“¬ £ÑM!\§œÒ%Ò”¾¿ÈYl<saw¼ÜÚôº’×®7ZiBW æ‚õh|Ñª"¾}lÇ„L¬ıSÒ˜õkçš‰”›™×ôl%,»ôNSŒa'G”Á$ï±oÜ!ƒïÒUV1gqt¥Íƒ¥gL½:¾­BºìÁ„—w+£><2Ÿ{ğ ôä$İ8²ÒzfNÁ¬ÅRåâİ©i%'Á}î…òË›3ª&’²Ñ‡-¯	qYœmcí¯]×L?7Î.Ù9Yt’LóUp	~$/×øéâR£ìh80%mV
-Ñ<˜Çò*ÎÚj×DcÃC@Âî ¡T Í{ä.eïi\†®³@_¸®0Óø¬EÉ²Q|_©
-N“7¢¾}æ˜áõÀP¯Æ¶ØÄ€–‘tCÛ¦Õ’E·p´·Ä®!FµQÊoÁ£#÷€2GƒÿıÑêWMÉÈú5ŠÒ¡„9gf¡c²ŞG‹g…Z»õ¡ÎOÌ‡6#—0òòÅ±ºÕ$RBá	1Q›Ğ
-À6]‡_LÓ5ë¢óA¦±¥ºïéÍxÑ6:ÚV·®‰ğIH—[’»ÑùOÔDÖ2¥5í)l¤Dv8AêVİ\ÏÁ@_…EóLº6¡(·òJ¬$¦ ß)™`ñ‹â¬y^åAwiŒ"@£Ñc’æd†Je×¬³."èˆ­<ÄüÈ¡î2–Ã–Ñª¢
-¡­“¯È8n‡ô×Üh˜ªşìNC`UI]•"{"EÜsôéF‚É!àµ"ôe¼Í¼şº§ua»5í6ïÄ›be¸S¾òB’2Z´‡r5’Äb¿aN¥2$ê]r¤g
-xÄvª?Çù´~qR§İ[–§} väH²òíĞ7Ğ1Œ«ßŸ0°Çan¾ß7ºú\ëİˆ]G¼tb5!ñ3ÒÀ`iÅ»r©1‰¶QsÉzÿ%IV|
-endstream
-endobj
-17 0 obj
-<<
-/Length 739       
-/Filter /FlateDecode
->>
-stream
-xÚmUMoâ0¼çWx•ÚÅvHU„dçCâ°mUªÕ^!1İH ı÷ëñ#xÙö ?ŸgìÁÜıx]OTİmÍ$|äìÍœºs_™Iössîîò®:L;<S›zœ==±×¾«Öf`÷Ù*_µÍğ`É«¶ÚŸk3²¾'ióÑ´‚}Øı»ù=©½à“í¹ÙM;áà¾7ÃŞr¾›f¶ÆnjÌ-ùeúSÓµOL<rÎm¡hë¬;ÀÃ)˜^t°é¨l×´uÃ¶Éê¦.#÷]ìa`ñúó4˜ÃªİuAš²é›<ı§SøL_úÚôMûÁîo”Ù™õùxÜ¨`<X.Ymv¶¡õş¼96ıÎà•òşy4Lº± UUW›ÓqS™~Ó~˜ å|ÉÒ²\¦­ÿ›KhÅv7RKås|…*Z©-–1
-Üb[Àd¨©0·…°´8¢‚ÅA‹å
-i‚É$C#.ĞC¡‡Z\w±ºFÉ|TTıÙôí<\`Gc)y,©<$¬g„àˆvàÀ1a×ç²³[RH×“LÄ1>g~¼À8÷ããâşÈ)okà	çA„8ö$`I\èÎ×3`çAfã<ÈZ]ƒÂ!‹„ê
-xNkÇyã¹ãĞğ"œ7Á¿ _¥ã“§Ìq
-âH`òáö•‚nú¥¤kÌÂğRONH=CpB:#=Ñ%8“ˆ88QA~¡!*ÉzÆœøĞäT?!~>	étw©8éÄy*ás£¤Ï
-}nÔÌçFE>7*ö¹Q‰ÏR>7Š²¢ G]¼;~îó¤ŠÛ<©ò6OšßæI‹¯yÒòktèó¤g>O:òyÒ±Ï“N|ôÜçI/|´òyÒÚçIg>O:÷yÒ…Ï“.}2îó”	Ÿ§Lú<e³ë¹_¾û¥ãmÂ;z}õªsßÛÑ=¶î¡Ã×´æú»#V¹{ÈÇ¿Œ^Êà/ñó¨P
-endstream
-endobj
-21 0 obj
-<<
-/Title(Solar Motion Simulator)/Subject(Solar Motion Simulator)/Creator(Jess W Vriesema)/Producer(Jess W Vriesema)
-/CreationDate (D:20251007125710-04'00')
-/ModDate (D:20251007125710-04'00')
-/Trapped /False
-/PTEX.Fullbanner (This is pdfTeX, Version 3.141592653-2.6-1.40.28 (TeX Live 2025) kpathsea version 6.4.1)
->>
-endobj
-5 0 obj
-<<
-/Type /ObjStm
-/N 15
-/First 96
-/Length 627       
-/Filter /FlateDecode
->>
-stream
-xÚmSÛnÛ0}÷Wğ±ÅÊò-6h’¥º¬A’ŞäAµYW€k’¼v?ÊN›^E’‡Ç‡ø@ ÷ôÇ'>¤À³8Y„~!=3àô	az<€8N€‡dLa$ƒ4ğ~iä{£°5°3µQÀf°M¨ß
-Ø\ÚóŒÇtï±Íß-E‰›ªÚbmdè±ÕêQê,¤˜¨Øú:QfÁÎ£tMy‹ƒí+ŞŞı†'fÙIšP·Uµû?Êw? €XUJ¯‘#„=r)¬E]“8İñû‹=[[a‘4sÍipÓÏ¸=ŒÊ±¥Vù-l©Ællƒ/ö Ö”.ïaûÖ‹ÍğÌqu6é¤ÛÆ¾¿{' ë8C“kÙX¥{¿Äİ¬g·w“oÓÅŠû¯Di ê“NÊAäÃ ˆÉ>}äaLuÙ©É IFÈ©hÎQ–tLCû»w—?¬¨d~Z—•_[|º¦4İîs¢S‰G¡İÜGLÕxÜ7ŸKJáñû/v…*µ÷¶;º •˜ƒ¬Ÿú0¸3gç”¹ÔÆº¶™ŸâİáFöÑ87wÈºªe®
-"3üJÆÓ8g¶Î_»…Ù;æÍBNg
-ÍT> h{ì6É}ó£†ÒOø±[°.ƒı”OÒ~¿¢DC~¥3¤·*½×«á÷ø~mÜİ‚bW/[[É»–øŒz©ñiWh§F#v.Ü(Uİ“2V·ØX·oZÕYê¹;Ç´VDz­Øeƒõin¥ª!z¥û2-÷
-endstream
-endobj
-22 0 obj
-<<
-/Type /XRef
-/Index [0 23]
-/Size 23
-/W [1 2 1]
-/Root 20 0 R
-/Info 21 0 R
-/ID [<BB9D80E6FEF63DEEC3C08D7B45C14711> <BB9D80E6FEF63DEEC3C08D7B45C14711>]
-/Length 76        
-/Filter /FlateDecode
->>
-stream
-xÚc``øÏÄÀÊ
-Äl@ÌÄŒ©€4##?ˆfa´^¢™€˜ˆ¹€˜ˆ9]¿ƒÄ9@4ó1cJ3cÆ Aéè
-endstream
-endobj
-startxref
-26800
-%%EOF
